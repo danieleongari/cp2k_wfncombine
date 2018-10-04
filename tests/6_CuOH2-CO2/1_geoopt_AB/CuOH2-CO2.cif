@@ -1,0 +1,31 @@
+data_crystal
+ 
+_cell_length_a    15.00000
+_cell_length_b    15.00000
+_cell_length_c    15.00000
+_cell_angle_alpha 90.00000
+_cell_angle_beta  90.00000
+_cell_angle_gamma 90.00000
+ 
+_symmetry_space_group_name_Hall 'P 1'
+_symmetry_space_group_name_H-M  'P 1'
+ 
+loop_
+_symmetry_equiv_pos_as_xyz
+ 'x,y,z' 
+ 
+loop_
+_atom_site_label
+_atom_site_type_symbol
+_atom_site_fract_x
+_atom_site_fract_y
+_atom_site_fract_z
+_atom_site_charge
+Cu         Cu      0.37827   0.51145   0.46922   0.0000000000
+O          O       0.41907   0.57037   0.27457   0.0000000000
+H          H       0.40771   0.56726   0.20962   0.0000000000
+O          O       0.33607   0.49086   0.68865   0.0000000000
+H          H       0.36707   0.48572   0.74671   0.0000000000
+O          O       0.55727   0.48116   0.61714   0.0000000000
+C          C       0.58355   0.49853   0.54388   0.0000000000
+O          O       0.60983   0.51590   0.47061   0.0000000000

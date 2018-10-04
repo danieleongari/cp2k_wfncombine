@@ -1,0 +1,230 @@
+&GLOBAL
+  PROJECT     cp2k 
+  RUN_TYPE    ENERGY   ! ENERGY, GEO_OPT, CELL_OPT, MD, BSS
+  PRINT_LEVEL MEDIUM    ! same as IOLEVEL 
+&END GLOBAL
+
+&FORCE_EVAL
+  METHOD          QUICKSTEP   !FIST for MM
+  STRESS_TENSOR   ANALYTICAL  !if available
+  &DFT
+    BASIS_SET_FILE_NAME ./BASIS_MOLOPT
+    POTENTIAL_FILE_NAME ./GTH_POTENTIALS  
+   
+    UKS          F
+    CHARGE       0
+    MULTIPLICITY 1
+
+    &MGRID
+       CUTOFF     [Ry] 300
+       REL_CUTOFF [Ry] 50 
+       NGRIDS          4         
+    &END MGRID
+
+    &QS
+       METHOD GPW 
+    &END QS
+
+    &POISSON		       ! to modify in case of nonperiodic calculations	
+       PERIODIC       XYZ 
+       POISSON_SOLVER PERIODIC
+    &END POISSON
+
+    &SCF                              
+      SCF_GUESS     ATOMIC       ! If it can not find cp2k-RESTART.wfn it will be switched to ATOMIC
+      MAX_SCF       20
+      EPS_SCF       1.0E-6        ! accuracy of the SCF procedure typically 1.0E-6 - 1.0E-7 (default: 1.0E-5). BC: this does not correspond to the absolute printed energy "change".
+      MAX_ITER_LUMO 10000         ! for computing the Band gap
+
+      &OUTER_SCF                  ! recompute the preconditioner and repeat the inner SCF cycle 
+        MAX_SCF     20
+        EPS_SCF     1.0E-7        ! must match the above
+      &END
+
+      &OT                         ! Default settings
+        PRECONDITIONER FULL_ALL   ! FULL_ALL is the best, use FULL_KINETIC only for very large systems because it's faster
+        MINIMIZER      DIIS       ! Default: DIIS. CG is 2x slower but more robust     
+      &END OT
+
+      &MIXING                     ! Default settings
+        METHOD  DIRECT_P_MIXING   ! direct mixing of old and new densities
+        ALPHA   0.4               ! fraction of the new density
+        BETA    0.5               ! Kerker damping parameter
+      &END MIXING
+
+      &PRINT 
+        &RESTART  ON           ! DEFAULT: print the RESTART.wfn file and 3 backups (OFF to save time)
+        &END
+      &END 
+    &END SCF
+
+    &XC
+      &XC_FUNCTIONAL 
+         &PBE
+          PARAMETRIZATION  ORIG                  ! Available: ORIG, PBESOL, REVPBE
+         &END
+      &END XC_FUNCTIONAL
+      &VDW_POTENTIAL                             ! adding Grimme's D3 correction  
+         POTENTIAL_TYPE    PAIR_POTENTIAL        ! PAIR_POTENTIAL=Grimme, NON_LOCAL=DF/DF2/VV10 
+         &PAIR_POTENTIAL
+            PARAMETER_FILE_NAME     /scratch/ongari/0_LIBRARIES/0_cp2k/dftd3.dat
+            TYPE                    DFTD3(BJ)                     ! Available: DFTD2, DFTD3, DFTD3(BJ)
+            REFERENCE_FUNCTIONAL    PBE                           ! Better to insert the SCALING parameters for other functionals than PBE
+         &END
+      &END VDW_POTENTIAL
+    &END XC
+
+    &PRINT                     ! To print the Band Gap and the energy levels. Also, can be activated to have cube files.
+      &E_DENSITY_CUBE OFF
+        STRIDE 2 2 2
+      &END E_DENSITY_CUBE
+      &MO_CUBES
+        WRITE_CUBE F
+        STRIDE 2 2 2
+        NLUMO 1
+        NHOMO 1
+      &END MO_CUBES                     
+      &MULLIKEN  ON  
+      &END
+      &HIRSHFELD ON
+      &END
+    &END PRINT 
+
+  &END DFT
+ 
+  &SUBSYS
+    &CELL
+      PERIODIC XYZ
+      MULTIPLE_UNIT_CELL 1 1 1
+      SYMMETRY NONE
+      A [angstrom] 10.00000  0.00000  0.00000
+      B [angstrom]  0.00000 10.00000  0.00000
+      C [angstrom]  0.00000  0.00000 10.00000
+    &END CELL
+ 
+    &COORD
+      SCALED .FALSE.
+O_ghost    3.8894196430059744E+00    5.4677655587916112E+00    4.9984641639363687E+00
+H_ghost    4.5900398611773392E+00    5.7725665515187794E+00    4.4007961281938739E+00
+H_ghost    3.3432577032276436E+00    6.2567549498311097E+00    5.1403549340425805E+00
+Ne         3.5647449608538282E+00    2.9209145739778717E+00    5.9724464897363703E+00
+    &END COORD
+ 
+    &KIND H
+      BASIS_SET DZVP-MOLOPT-SR-GTH
+      POTENTIAL GTH-PBE
+    &END KIND
+    &KIND   H_ghost
+      BASIS_SET DZVP-MOLOPT-SR-GTH
+      GHOST
+    &END KIND 
+ 
+    &KIND O
+      BASIS_SET DZVP-MOLOPT-SR-GTH
+      POTENTIAL GTH-PBE
+    &END KIND
+    &KIND   O_ghost
+      BASIS_SET DZVP-MOLOPT-SR-GTH
+      GHOST
+    &END KIND 
+
+    &KIND Ne
+      BASIS_SET DZVP-MOLOPT-SR-GTH
+      POTENTIAL GTH-PBE
+    &END KIND
+    &KIND   Ne_ghost
+      BASIS_SET DZVP-MOLOPT-SR-GTH
+      GHOST
+    &END KIND 
+
+  &END SUBSYS
+
+&END FORCE_EVAL 
+
+&MOTION                       ! how to propagate the system, selection via RUN_TYPE in the &GLOBAL section
+
+# &CONSTRAINT
+#  &FIXED_ATOMS
+#   COMPONENTS_TO_FIX  XYZ                 !default
+#   LIST               1..120        !note the use of ".." for a range of values
+#  &END
+# &END
+
+ &CELL_OPT                              # to activate with "RUN_TYPE CELL_OPT"
+   EXTERNAL_PRESSURE     [bar] 0.0
+   KEEP_ANGLES                 .FALSE.
+   KEEP_SYMMETRY               .FALSE.
+   MAX_DR           [angstrom] 0.001    ! Convergence criterium for the maximum geometry change
+   RMS_DR           [angstrom] 0.0005   ! Convergence criterium for the root mean square (RMS) geometry change   
+   MAX_FORCE [bohr^-1*hartree] 0.00045  !default: 0.00045
+   RMS_FORCE [bohr^-1*hartree] 0.0003   !default: 0.0003
+   MAX_ITER                    500
+   OPTIMIZER                   BFGS 	
+   PRESSURE_TOLERANCE    [bar] 100             !default: 100
+   TYPE                        DIRECT_CELL_OPT !default: DIRECT_CELL_OPT
+   &BFGS
+   &END
+ &END
+
+ &GEO_OPT                     # to activate with "RUN_TYPE GEO_OPT": you can avoid this section since default setting are fine!
+   OPTIMIZER         BFGS     !default, Good choice for 'small' systems (use LBFGS or CG for large systems)
+   MAX_ITER          200      !default
+   MAX_DR           [angstrom] 0.001    !default: 0.0030[bohr]  Convergence criterium for the maximum geometry change
+   RMS_DR           [angstrom] 0.0005   !default: 0.0015[bohr]  Convergence criterium for the root mean square (RMS) geometry change   
+   MAX_FORCE [bohr^-1*hartree] 0.00045  !default: 0.00045
+   RMS_FORCE [bohr^-1*hartree] 0.0003   !default: 0.0003 
+   &BFGS
+   &END
+ &END
+
+ &MD
+     ENSEMBLE         NVT
+     STEPS           1000
+     TIMESTEP   [fs]  1.0
+     TEMPERATURE      300
+     &THERMOSTAT
+       TYPE           CSVR     
+       &CSVR
+         TIMECON [fs] 100      ### SLing: 0.1 small time constant (strong coupling) for equilibration; change to 50~100 or bigger for production run
+       &END CSVR
+     &END THERMOSTAT
+  &END MD
+
+  &PRINT
+
+   &TRAJECTORY                 
+     FORMAT XYZ 
+     &EACH                    
+       MD        1
+       GEO_OPT   1
+       CELL_OPT  1
+     &END EACH
+   &END TRAJECTORY
+
+   &CELL OFF
+   &END CELL
+
+   &VELOCITIES OFF
+   &END VELOCITIES
+
+   &FORCES OFF
+   &END FORCES
+
+   &RESTART
+     BACKUP_COPIES 3
+     &EACH
+       MD       1 
+       GEO_OPT  1
+       CELL_OPT 1
+     &END EACH
+   &END RESTART
+
+   &RESTART_HISTORY            
+     &EACH
+       MD       1000  
+       GEO_OPT  1000 
+       CELL_OPT 1000                
+     &END EACH
+   &END RESTART_HISTORY
+  &END PRINT
+&END MOTION

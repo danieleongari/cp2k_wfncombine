@@ -1,0 +1,49 @@
+##### Include it to the main cp2k.inp using: @INCLUDE 'h2o-co2.subsys'
+  &SUBSYS
+    &CELL
+      PERIODIC XYZ
+      MULTIPLE_UNIT_CELL 1 1 1
+      SYMMETRY NONE
+      A [angstrom] 15.00000  0.00000  0.00000
+      B [angstrom]  0.00000 15.00000  0.00000
+      C [angstrom]  0.00000  0.00000 15.00000
+    &END CELL
+ 
+    &COORD
+      SCALED .FALSE.
+  O   5.30385   8.83845   7.07145 
+  H   5.80860   8.44170   6.31755 
+  H   5.22945   8.10570   7.73325 
+  O   7.86915   7.26435   9.07050 
+  C   8.31195   7.52085   7.98915 
+  O   8.75385   7.77765   6.90765 
+    &END COORD
+ 
+    &KIND H
+      BASIS_SET DZVP-MOLOPT-SR-GTH
+      POTENTIAL GTH-PBE
+    &END KIND
+    &KIND H_GHOST
+      BASIS_SET DZVP-MOLOPT-SR-GTH
+      GHOST
+    &END KIND
+ 
+    &KIND C
+      BASIS_SET DZVP-MOLOPT-SR-GTH
+      POTENTIAL GTH-PBE
+    &END KIND
+    &KIND C_GHOST
+      BASIS_SET DZVP-MOLOPT-SR-GTH
+      GHOST
+    &END KIND
+ 
+    &KIND O
+      BASIS_SET DZVP-MOLOPT-SR-GTH
+      POTENTIAL GTH-PBE
+    &END KIND
+    &KIND O_GHOST
+      BASIS_SET DZVP-MOLOPT-SR-GTH
+      GHOST
+    &END KIND
+ 
+  &END SUBSYS

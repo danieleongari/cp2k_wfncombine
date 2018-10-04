@@ -19,7 +19,7 @@ print('-------------------------------------------------------------------------
 print('-------------------------------------------------------------------------------------------')
 print('-------------------------------------------------------------------------------------------')
 
-data = scipy.io.FortranFile('new_restart.wfn', 'r')
+data = scipy.io.FortranFile('new_restart_reordered.wfn', 'r')
 natom, nspin, nao, nset_max, nshell_max = data.read_ints()
 
 print('Number of atoms: {}'.format(natom))

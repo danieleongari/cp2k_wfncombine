@@ -278,22 +278,29 @@ print('Number of shells in each of the sets {}'.format(nshell_info1))
 nso_info1 = data.read_ints()
 print('Number of orbitals in each shell {}'.format(nso_info1))
 
+# Data structure: [Spin] Spin = [[nmo, homo, lumo, nelectron], evals_occs, [MO] MO = [Coefficients]
+spins1 = []
 for ispin in range(nspin1):
     print('. . . FOR SPIN {}: . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .'.format(ispin))
+    spins1.append([])
 
     nmo, homo, lfomo, nelectron = data.read_ints()
+    spins1[ispin].append([nmo, homo, lfomo, nelectron])
     print('Number of molecular orbitals: {}'.format(nmo))
     print('Index of the HOMO: {}'.format(homo))
-    print('???: {}'.format(lfomo))
+    print('Index of the LUMO: {}'.format(lfomo))
     print('Number of electrons: {}'.format(nelectron))
 
 
     evals_occs = data.read_reals()
+    spins1[ispin].append(evals_occs)
     print('Eigenvalues and occupancies of the molecular orbitals: {}'.format(evals_occs))
 
+    spins1[ispin].append([])
     for imo in range(nmo):
         coefs = data.read_reals()
-        print('Coefficients for molecular orbital {}:'.format(imo))
+        spins1[ispin][2].append(coefs)
+        print('Coefficients for molecular orbital {}:'.format(imo + 1))
         print(coefs)
 
 print('. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .')
@@ -332,21 +339,29 @@ print('Number of shells in each of the sets {}'.format(nshell_info2))
 nso_info2 = data.read_ints()
 print('Number of orbitals in each shell {}'.format(nso_info2))
 
+# Data structure: [Spin] Spin = [[nmo, homo, lumo, nelectron], evals_occs, [MO] MO = [Coefficients]
+spins2 = []
 for ispin in range(nspin2):
     print('. . . FOR SPIN {}: . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .'.format(ispin))
+    spins2.append([])
 
     nmo, homo, lfomo, nelectron = data.read_ints()
+    spins2[ispin].append([nmo, homo, lfomo, nelectron])
+
     print('Number of molecular orbitals: {}'.format(nmo))
     print('Index of the HOMO: {}'.format(homo))
-    print('???: {}'.format(lfomo))
+    print('Index of the LUMO: {}'.format(lfomo))
     print('Number of electrons: {}'.format(nelectron))
 
 
     evals_occs = data.read_reals()
+    spins2[ispin].append(evals_occs)
     print('Eigenvalues and occupancies of the molecular orbitals: {}'.format(evals_occs))
 
+    spins2[ispin].append([])
     for imo in range(nmo):
         coefs = data.read_reals()
+        spins2[ispin][2].append(coefs)
         print('Coefficients for molecular orbital {}:'.format(imo + 1))
         print(coefs)
 
@@ -360,86 +375,48 @@ print('. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
 print(' . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . ')
 print('. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .')
 print(' . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . ')
-print('. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .')
-print(' . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . ')
-print('. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .')
-print(' . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . ')
-print('. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .')
 
 data = scipy.io.FortranFile('new_restart_wavefunction.wfn', 'w')
 
-data.write_record(np.array([natom1 + natom2, 1, nao1 + nao2, 1, 5], dtype=np.int32))
-data.write_record(np.array([1, 1, 1, 1], dtype=np.int32))
-data.write_record(np.array([5, 3, 3, 5], dtype=np.int32))
-data.write_record(np.array([1, 1, 3, 3, 5, 1, 1, 3, 0, 0, 1, 1, 3, 0, 0, 1, 1, 3, 3, 5], dtype=np.int32))
+data.write_record(np.array([natom1 + natom2, max(nspin1, nspin2), nao1 + nao2, max(nset_max1, nset_max2), max(nshell_max1, nshell_max2)], dtype=np.int32))
 
-data.write_record(np.array([8, 8, 9, 16], dtype=np.int32))
+data.write_record(np.array(np.concatenate([nset_info1, nset_info2]), dtype=np.int32))
+data.write_record(np.array(np.concatenate([nshell_info1, nshell_info2]), dtype=np.int32))
+data.write_record(np.array(np.concatenate([nso_info1, nso_info2]), dtype=np.int32))
 
-data.write_record(np.array([-1.30869473, -0.92212209, -0.47346149, -0.46223179, -0.46213706, -0.46171009,
- -0.33292547, -0.25700316,  2.,          2.,          2.,          2.,
-  2.,          2.,          2.,          2.,        ], dtype=np.dtype('f8')))
+for ispin in range(max(nspin1, nspin2)):
+    data.write_record(np.array([spins1[ispin][0][0] + spins2[ispin][0][0],
+                                spins1[ispin][0][1] + spins2[ispin][0][1],
+                                spins1[ispin][0][1] + spins2[ispin][0][1] + 1,
+                                spins1[ispin][0][3] + spins2[ispin][0][3]], dtype=np.int32))
 
-mo1 = [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0] + [-1.00000174e+00,  1.70868178e-03, -2.65459225e-06, -5.41857569e-06,
-  1.72556264e-06,  1.75237378e-05,  3.24981821e-06, -1.01298609e-06,
- -2.43189216e-08,  7.51696540e-08,  6.83671336e-07, -2.85864786e-09,
-  1.13698757e-06]
+    evoccs = []
+    for i in range(int(spins1[ispin][0][0] + spins2[ispin][0][0])):
+        evoccs.append(0.0)
+    for i in range(int(spins1[ispin][0][0] + spins2[ispin][0][0])):
+        evoccs.append(2.0)
+    data.write_record(np.array(evoccs, dtype=np.dtype('f8')))
 
-data.write_record(np.array(mo1, dtype=np.dtype('f8')))
+    nmo1 = len(spins1[ispin][2])
+    nmo2 = len(spins2[ispin][2])
+    for imo in range(nmo1):
+        zeroes = []
+        for i in range(nao2):
+            zeroes.append(0.0)
+        mo = np.concatenate([spins1[ispin][2][imo], np.array(zeroes, dtype=np.dtype('f8'))])
+        data.write_record(np.array(mo, dtype=np.dtype('f8')))
+    for imo in range(nmo2):
+        zeroes = []
+        for i in range(nao1):
+            zeroes.append(0.0)
+        mo = np.concatenate([np.array(zeroes, dtype=np.dtype('f8')), spins2[ispin][2][imo]])
+        data.write_record(np.array(mo, dtype=np.dtype('f8')))
 
-mo2 = [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0] + [-3.35652299e-06,  8.11616055e-05,  9.59775465e-01,  2.65023409e-01,
- -9.12364274e-02,  2.98281540e-03,  8.24228239e-04, -2.83683066e-04,
-  1.41753757e-06, -4.24845203e-06, -3.79768147e-05,  1.98833549e-07,
- -6.81301239e-05]
-
-data.write_record(np.array(mo2, dtype=np.dtype('f8')))
-
-mo3 = [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0] + [ 4.79210400e-07,  2.03681800e-06,  3.54959007e-02,  2.07917813e-01,
-  9.77363803e-01,  1.10532097e-04,  6.47898175e-04,  3.04490486e-03,
- -1.26571232e-05, -2.74579545e-06,  7.37617040e-07, -1.04846868e-06,
- -4.12554343e-06]
-
-data.write_record(np.array(mo3, dtype=np.dtype('f8')))
-
-mo4 = [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0] + [-4.76242047e-06, -1.35231609e-05, -2.78031476e-01,  9.41415152e-01,
- -1.90172804e-01, -8.65926729e-04,  2.93409753e-03, -5.92576276e-04,
-  2.38729477e-06, -1.20285456e-05,  1.67267203e-05,  5.83186029e-07,
-  1.99196054e-05]
-
-data.write_record(np.array(mo4, dtype=np.dtype('f8')))
-
-mo5 = [-0.77650385, -0.13272555, -0.15731438,  0.06555435, -0.02220551, -0.05728619,
-  0.0238743,  -0.00808525, -0.00329151, -0.00388001, -0.00531996, -0.00983482,
- -0.00228235, -0.21591522,  0.00442084, -0.0117396,   0.03221218, -0.03981822,
- -0.21592501,  0.00442209, -0.0398535,  -0.0107158,   0.03253014] + [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]
-
-data.write_record(np.array(mo5, dtype=np.dtype('f8')))
-
-mo6 = [-3.27950167e-06, -2.30224872e-06,  2.33770454e-01,  3.57112715e-01,
- -6.02044090e-01,  2.60315406e-02,  3.97726077e-02, -6.70555070e-02,
-  2.71813209e-02, -1.24060366e-02,  1.23061925e-02, -1.43919902e-02,
-  1.52233237e-02, -3.59427398e-01,  5.18701793e-03, -2.43314898e-02,
-  1.66766235e-02, -1.25459017e-02,  3.59412103e-01, -5.18667301e-03,
-  3.10676623e-02, -6.40461450e-03, -4.72106900e-03] + [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]
-
-data.write_record(np.array(mo6, dtype=np.dtype('f8')))
-
-mo7 = [-4.20638191e-01,  9.31906042e-02,  7.29838470e-01, -3.04195374e-01,
-  1.02966795e-01,  1.03079339e-02, -4.31331502e-03,  1.45103957e-03,
- -4.24594161e-03,  1.71030641e-02,  9.13947640e-03,  5.52893898e-03,
-  1.93351805e-02,  2.15810193e-01, -1.17727855e-03, -3.60768355e-02,
-  6.98091770e-04,  1.49370450e-02,  2.15837123e-01, -1.17898695e-03,
- -2.13254605e-02,  2.32397333e-02, -2.30424112e-02] + [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]
-
-data.write_record(np.array(mo7, dtype=np.dtype('f8')))
-
-mo8 = [ 5.24181587e-05, -8.76320496e-06, -2.30022496e-01, -7.28563213e-01,
- -5.21453042e-01,  4.47700249e-03,  1.41206634e-02,  1.01218519e-02,
-  1.44616474e-02,  1.65174069e-02, -1.37153886e-02, -2.98862755e-03,
- -4.08071150e-03, -2.62878959e-05, -1.61353496e-06,  1.60541480e-02,
-  5.08695772e-02,  3.64197470e-02, -3.81810151e-05, -7.81764670e-07,
-  1.60546561e-02,  5.08532504e-02,  3.64202644e-02] + [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]
-
-data.write_record(np.array(mo8, dtype=np.dtype('f8')))
+print('. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .')
+print(' . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . ')
+print('. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .')
+print(' . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . ')
+print('. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .')
 
 data = scipy.io.FortranFile('new_restart_wavefunction.wfn', 'r')
 
@@ -468,7 +445,7 @@ for ispin in range(nspin):
     nmo, homo, lfomo, nelectron = data.read_ints()
     print('Number of molecular orbitals: {}'.format(nmo))
     print('Index of the HOMO: {}'.format(homo))
-    print('???: {}'.format(lfomo))
+    print('Index of the LUMO: {}'.format(lfomo))
     print('Number of electrons: {}'.format(nelectron))
 
 
@@ -477,5 +454,7 @@ for ispin in range(nspin):
 
     for imo in range(nmo):
         coefs = data.read_reals()
-        print('Coefficients for molecular orbital {}:'.format(imo))
+        print('Coefficients for molecular orbital {}:'.format(imo + 1))
         print(coefs)
+
+print('WARNING: Ensure that the atomic coordinates in the CP2K input file are in the same order as the two seperate wfn files are inputted into this script')

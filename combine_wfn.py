@@ -301,7 +301,7 @@ for ispin in range(nspin1):
         coefs = data.read_reals()
         spins1[ispin][2].append(coefs)
         print('Coefficients for molecular orbital {}:'.format(imo + 1))
-        print(coefs)
+        # print(coefs)
 
 print('. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .')
 print(' . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . ')
@@ -363,7 +363,7 @@ for ispin in range(nspin2):
         coefs = data.read_reals()
         spins2[ispin][2].append(coefs)
         print('Coefficients for molecular orbital {}:'.format(imo + 1))
-        print(coefs)
+        # print(coefs)
 
 print('. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .')
 print(' . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . ')
@@ -455,6 +455,6 @@ for ispin in range(nspin):
     for imo in range(nmo):
         coefs = data.read_reals()
         print('Coefficients for molecular orbital {}:'.format(imo + 1))
-        print(coefs)
+        # print(coefs)
 
-print('WARNING: Ensure that the atomic coordinates in the CP2K input file are in the same order as the two seperate wfn files are inputted into this script')
+# print('WARNING: Ensure that the atomic coordinates in the CP2K input file are in the same order as the two seperate wfn files are inputted into this script')

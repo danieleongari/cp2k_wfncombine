@@ -382,6 +382,18 @@ data.write_record(np.array([natom1 + natom2, max(nspin1, nspin2), nao1 + nao2, m
 
 data.write_record(np.array(np.concatenate([nset_info1, nset_info2]), dtype=np.int32))
 data.write_record(np.array(np.concatenate([nshell_info1, nshell_info2]), dtype=np.int32))
+maxSetSize1 = nshell_info1.max()
+maxSetSize2 = nshell_info2.max()
+if maxSetSize1 > maxSetSize2:
+    setSizeDifference = maxSetSize1 - maxSetSize2
+    for i in  range(natom2):
+        for j in range(setSizeDifference):
+            nso_info2 = np.insert(nso_info2, maxSetSize2 + i*maxSetSize1, 0)
+if maxSetSize2 > maxSetSize1:
+    setSizeDifference = maxSetSize2 - maxSetSize1
+    for i in  range(natom1):
+        for j in range(setSizeDifference):
+            nso_info1 = np.insert(nso_info1, maxSetSize1 + i*maxSetSize2, 0)
 data.write_record(np.array(np.concatenate([nso_info1, nso_info2]), dtype=np.int32))
 
 for ispin in range(max(nspin1, nspin2)):

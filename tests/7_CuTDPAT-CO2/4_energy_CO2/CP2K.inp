@@ -1,0 +1,125 @@
+&GLOBAL
+  PROJECT     cp2k 
+  RUN_TYPE    ENERGY   
+  PRINT_LEVEL MEDIUM    
+&END GLOBAL
+
+&FORCE_EVAL
+  METHOD          QUICKSTEP   !FIST for MM
+  STRESS_TENSOR   ANALYTICAL  !if available
+  &DFT
+    BASIS_SET_FILE_NAME ./BASIS_MOLOPT
+    POTENTIAL_FILE_NAME ./GTH_POTENTIALS  
+   
+    UKS          T
+    CHARGE       0
+    MULTIPLICITY 1
+
+    &MGRID
+       CUTOFF     [Ry] 600
+       REL_CUTOFF [Ry] 50 
+       NGRIDS          4         
+    &END MGRID
+
+    &QS
+       METHOD GPW 
+    &END QS
+
+    &POISSON		       ! to modify in case of nonperiodic calculations	
+       PERIODIC       XYZ 
+       POISSON_SOLVER PERIODIC
+    &END POISSON
+
+    &SCF                              
+      SCF_GUESS     ATOMIC       ! If it can not find cp2k-RESTART.wfn it will be switched to ATOMIC
+      MAX_SCF       50
+      EPS_SCF       1.0E-6        ! accuracy of the SCF procedure typically 1.0E-6 - 1.0E-7 (default: 1.0E-5). BC: this does not correspond to the absolute printed energy "change".
+
+      &OUTER_SCF                  ! recompute the preconditioner and repeat the inner SCF cycle 
+        MAX_SCF     10
+        EPS_SCF     1.0E-6        ! must match the above
+      &END
+
+      &OT                         ! Default settings
+        PRECONDITIONER FULL_ALL   ! FULL_ALL is the best, use FULL_KINETIC only for very large systems because it's faster
+        MINIMIZER      DIIS       ! Default: DIIS. CG is 2x slower but more robust     
+      &END OT
+
+      &MIXING                     ! Default settings
+        METHOD  DIRECT_P_MIXING   ! direct mixing of old and new densities
+        ALPHA   0.4               ! fraction of the new density
+        BETA    0.5               ! Kerker damping parameter
+      &END MIXING
+
+      &PRINT 
+        &RESTART  ON           ! DEFAULT: print the RESTART.wfn file and 3 backups (OFF to save time)
+        &END
+      &END 
+    &END SCF
+
+    &XC
+      &XC_FUNCTIONAL 
+         &PBE
+          PARAMETRIZATION  ORIG                  ! Available: ORIG, PBESOL, REVPBE
+         &END
+      &END XC_FUNCTIONAL
+      &VDW_POTENTIAL                             ! adding Grimme's D3 correction  
+         POTENTIAL_TYPE    PAIR_POTENTIAL        ! PAIR_POTENTIAL=Grimme, NON_LOCAL=DF/DF2/VV10 
+         &PAIR_POTENTIAL
+            PARAMETER_FILE_NAME     /scratch/ongari/0_LIBRARIES/0_cp2k/dftd3.dat
+            TYPE                    DFTD3(BJ)                     ! Available: DFTD2, DFTD3, DFTD3(BJ)
+            REFERENCE_FUNCTIONAL    PBE                           ! Better to insert the SCALING parameters for other functionals than PBE
+         &END
+      &END VDW_POTENTIAL
+    &END XC
+
+    &PRINT                     ! To print the Band Gap and the energy levels. Also, can be activated to have cube files.
+      &E_DENSITY_CUBE OFF
+        STRIDE 2 2 2
+      &END E_DENSITY_CUBE
+      &MO_CUBES OFF
+        WRITE_CUBE F
+        STRIDE 2 2 2
+        NLUMO 1
+        NHOMO 1
+      &END MO_CUBES                     
+      &MULLIKEN  OFF  
+      &END
+      &HIRSHFELD OFF
+      &END
+    &END PRINT 
+
+  &END DFT
+ 
+  &SUBSYS
+    &CELL
+      PERIODIC XYZ
+      MULTIPLE_UNIT_CELL 1 1 1
+      SYMMETRY NONE
+      A [angstrom] 15.00000  0.00000  0.00000
+      B [angstrom]  0.00000 15.00000  0.00000
+      C [angstrom]  0.00000  0.00000 15.00000
+    &END CELL
+ 
+    &COORD
+      SCALED .FALSE.
+O_ads    7.8918935812682758E+00    7.1923456949454287E+00    9.0475713159076125E+00
+C_ads    8.3047376239793369E+00    7.5470358814337155E+00    8.0029659541414819E+00
+O_ads    8.7431522867240314E+00    7.8883831713564874E+00    6.9644019022776291E+00
+    &END COORD
+ 
+    &KIND C_ads
+      ELEMENT C
+      BASIS_SET DZVP-MOLOPT-SR-GTH
+      POTENTIAL GTH-PBE
+    &END KIND
+ 
+    &KIND O_ads
+      ELEMENT O
+      BASIS_SET DZVP-MOLOPT-SR-GTH
+      POTENTIAL GTH-PBE
+    &END KIND
+ 
+  &END SUBSYS
+
+&END FORCE_EVAL 

@@ -16,7 +16,7 @@
     MULTIPLICITY 1
 
     &MGRID
-       CUTOFF     [Ry] 300
+       CUTOFF     [Ry] 600
        REL_CUTOFF [Ry] 50 
        NGRIDS          4         
     &END MGRID
@@ -30,21 +30,27 @@
        POISSON_SOLVER PERIODIC
     &END POISSON
 
-    &SCF                              
+    &SCF          
+      ADDED_MOS     10                            
       SCF_GUESS     ATOMIC       ! If it can not find cp2k-RESTART.wfn it will be switched to ATOMIC
-      MAX_SCF       20
-      EPS_SCF       1.0E-6        ! accuracy of the SCF procedure typically 1.0E-6 - 1.0E-7 (default: 1.0E-5). BC: this does not correspond to the absolute printed energy "change".
+      MAX_SCF       1000
+      EPS_SCF       1.0E-7        ! accuracy of the SCF procedure typically 1.0E-6 - 1.0E-7 (default: 1.0E-5). BC: this does not correspond to the absolute printed energy "change".
       MAX_ITER_LUMO 10000         ! for computing the Band gap
 
-      &OUTER_SCF                  ! recompute the preconditioner and repeat the inner SCF cycle 
-        MAX_SCF     20
-        EPS_SCF     1.0E-7        ! must match the above
-      &END
+      # ot not implemented with ADDED_MOS
+      #&OUTER_SCF                  ! recompute the preconditioner and repeat the inner SCF cycle 
+      #  MAX_SCF     20
+      #  EPS_SCF     1.0E-7        ! must match the above
+      #&END
+      #
+      #&OT                         ! Default settings
+      #  PRECONDITIONER FULL_ALL   ! FULL_ALL is the best, use FULL_KINETIC only for very large systems because it's faster
+      #  MINIMIZER      DIIS       ! Default: DIIS. CG is 2x slower but more robust     
+      #&END OT
 
-      &OT                         ! Default settings
-        PRECONDITIONER FULL_ALL   ! FULL_ALL is the best, use FULL_KINETIC only for very large systems because it's faster
-        MINIMIZER      DIIS       ! Default: DIIS. CG is 2x slower but more robust     
-      &END OT
+      &DIAGONALIZATION            #alternative to OT 
+          ALGORITHM STANDARD
+      &END DIAGONALIZATION
 
       &MIXING                     ! Default settings
         METHOD  DIRECT_P_MIXING   ! direct mixing of old and new densities

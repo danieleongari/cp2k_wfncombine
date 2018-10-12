@@ -11,23 +11,23 @@
  DBCSR| Communication thread load                                             87
 
 
-  **** **** ******  **  PROGRAM STARTED AT               2018-09-27 08:43:13.218
- ***** ** ***  *** **   PROGRAM STARTED ON                                  f270
+  **** **** ******  **  PROGRAM STARTED AT               2018-10-12 10:00:18.128
+ ***** ** ***  *** **   PROGRAM STARTED ON                                  g161
  **    ****   ******    PROGRAM STARTED BY                                ongari
- ***** **    ** ** **   PROGRAM PROCESS ID                                 17046
-  **** **  *******  **  PROGRAM STARTED IN /home/ongari/x_corso_bonella/4_cp2k/1
-                                           _water_PBE
+ ***** **    ** ** **   PROGRAM PROCESS ID                                  1178
+  **** **  *******  **  PROGRAM STARTED IN /scratch/ongari/proj45_cp2krestart/wa
+                                           ter/4
 
  CP2K| version string:                                          CP2K version 5.1
  CP2K| source code revision number:                                    svn:18091
  CP2K| cp2kflags: libint fftw3 pexsi parallel mpi3 scalapack libderiv_max_am1=5 
  CP2K|            libint_max_am=6
  CP2K| is freely available from                            https://www.cp2k.org/
- CP2K| Program compiled at                          Thu Jul 5 11:15:01 CEST 2018
- CP2K| Program compiled on                                                  f016
- CP2K| Program compiled for                  linux-rhel7-x86_E5v4_Mellanox-intel
- CP2K| Data directory path    /dev/shm/scitasbuild/spack-stage/spack-stage-ZDQwS
- CP2K| Input file name                                             water_PBE.inp
+ CP2K| Program compiled at                          Thu Jul 5 10:57:58 CEST 2018
+ CP2K| Program compiled on                                                  g005
+ CP2K| Program compiled for                  linux-rhel7-x86_S6g1_Mellanox-intel
+ CP2K| Data directory path    /dev/shm/scitasbuild/spack-stage/spack-stage-Kdd_n
+ CP2K| Input file name                                                  cp2k.inp
  
  GLOBAL| Force Environment number                                              1
  GLOBAL| Basis set file name                                      ./BASIS_MOLOPT
@@ -45,17 +45,17 @@
  GLOBAL| Total number of message passing processes                            25
  GLOBAL| Number of threads for this process                                    1
  GLOBAL| This output is from process                                           0
- GLOBAL| CPU model name :  Intel(R) Xeon(R) CPU E5-2690 v4 @ 2.60GHz
+ GLOBAL| CPU model name :  Intel(R) Xeon(R) Gold 6132 CPU @ 2.60GHz
 
  MEMORY| system memory details [Kb]
  MEMORY|                        rank 0           min           max       average
- MEMORY| MemTotal            131627068     131627068     131627068     131627068
- MEMORY| MemFree             115413012     115413012     115413012     115413012
- MEMORY| Buffers                  9680          9680          9680          9680
- MEMORY| Cached                 185344        185344        185344        185344
- MEMORY| Slab                  1326572       1326572       1327404       1327004
- MEMORY| SReclaimable            54904         54904         54904         54904
- MEMORY| MemLikelyFree       115662940     115662940     115662940     115662940
+ MEMORY| MemTotal            197738988     197738988     197738988     197738988
+ MEMORY| MemFree             179401952     179401952     179401952     179401952
+ MEMORY| Buffers                  1752          1752          1752          1752
+ MEMORY| Cached                 245412        245412        245412        245412
+ MEMORY| Slab                  2394480       2394480       2394480       2394480
+ MEMORY| SReclaimable           960144        960144        960144        960144
+ MEMORY| MemLikelyFree       180609260     180609260     180609260     180609260
 
 
  *** Fundamental physical constants (SI units) ***
@@ -151,9 +151,9 @@
  **                                                                           **
  *******************************************************************************
 
- DFT| Spin restricted Kohn-Sham (RKS) calculation                            RKS
+ DFT| Spin unrestricted (spin-polarized) Kohn-Sham calculation               UKS
  DFT| Multiplicity                                                             1
- DFT| Number of spin states                                                    1
+ DFT| Number of spin states                                                    2
  DFT| Charge                                                                   0
  DFT| Self-interaction correction (SIC)                                       NO
  DFT| Cutoffs: density                                              1.000000E-10
@@ -165,7 +165,7 @@
  FUNCTIONAL| ROUTINE=NEW
  FUNCTIONAL| PBE:
  FUNCTIONAL| J.P.Perdew, K.Burke, M.Ernzerhof, Phys. Rev. Letter, vol. 77, n 18,
- FUNCTIONAL|  pp. 3865-3868, (1996){spin unpolarized}                           
+ FUNCTIONAL|  pp. 3865-3868, (1996){spin polarized}                             
  vdW POTENTIAL|                                                   Pair Potential
  vdW POTENTIAL|          DFT-D3 (Version 3.1)
  vdW POTENTIAL|          Potential Form: S. Grimme et al, JCP 132: 154104 (2010)
@@ -180,11 +180,11 @@
  QS| Method:                                                                 GPW
  QS| Density plane wave grid type                        NON-SPHERICAL FULLSPACE
  QS| Number of grid levels:                                                    4
- QS| Density cutoff [a.u.]:                                                150.0
- QS| Multi grid cutoff [a.u.]: 1) grid level                               150.0
- QS|                           2) grid level                                50.0
- QS|                           3) grid level                                16.7
- QS|                           4) grid level                                 5.6
+ QS| Density cutoff [a.u.]:                                                300.0
+ QS| Multi grid cutoff [a.u.]: 1) grid level                               300.0
+ QS|                           2) grid level                               100.0
+ QS|                           3) grid level                                33.3
+ QS|                           4) grid level                                11.1
  QS| Grid level progression factor:                                          3.0
  QS| Relative density cutoff [a.u.]:                                        25.0
  QS| Consistent realspace mapping and integration 
@@ -409,7 +409,7 @@
                         max_scf_history:                                       0
                         max_diis:                                              4
                         --------------------------------------------------------
-                        eps_scf:                                        1.00E-06
+                        eps_scf:                                        1.00E-07
                         eps_scf_history:                                0.00E+00
                         eps_diis:                                       1.00E-01
                         eps_eigval:                                     1.00E-05
@@ -427,73 +427,73 @@
  PW_GRID| Grid distributed over                                    25 processors
  PW_GRID| Real space group dimensions                                    25    1
  PW_GRID| the grid is blocked:                                                NO
- PW_GRID| Cutoff [a.u.]                                                    150.0
+ PW_GRID| Cutoff [a.u.]                                                    300.0
  PW_GRID| spherical cutoff:                                                   NO
- PW_GRID|   Bounds   1            -54      53                Points:         108
- PW_GRID|   Bounds   2            -54      53                Points:         108
- PW_GRID|   Bounds   3            -54      53                Points:         108
- PW_GRID| Volume element (a.u.^3)  0.5357E-02     Volume (a.u.^3)      6748.3346
+ PW_GRID|   Bounds   1            -75      74                Points:         150
+ PW_GRID|   Bounds   2            -75      74                Points:         150
+ PW_GRID|   Bounds   3            -75      74                Points:         150
+ PW_GRID| Volume element (a.u.^3)  0.2000E-02     Volume (a.u.^3)      6748.3346
  PW_GRID| Grid span                                                    FULLSPACE
  PW_GRID|   Distribution                         Average         Max         Min
- PW_GRID|   G-Vectors                            50388.5       50436       50328
- PW_GRID|   G-Rays                                 466.6         467         466
- PW_GRID|   Real Space Points                    50388.5       58320       46656
+ PW_GRID|   G-Vectors                           135000.0      135000      135000
+ PW_GRID|   G-Rays                                 900.0         900         900
+ PW_GRID|   Real Space Points                   135000.0      135000      135000
 
  PW_GRID| Information for grid number                                          2
  PW_GRID| Grid distributed over                                    25 processors
  PW_GRID| Real space group dimensions                                    25    1
  PW_GRID| the grid is blocked:                                                NO
- PW_GRID| Cutoff [a.u.]                                                     50.0
+ PW_GRID| Cutoff [a.u.]                                                    100.0
  PW_GRID| spherical cutoff:                                                   NO
- PW_GRID|   Bounds   1            -32      31                Points:          64
- PW_GRID|   Bounds   2            -32      31                Points:          64
- PW_GRID|   Bounds   3            -32      31                Points:          64
- PW_GRID| Volume element (a.u.^3)  0.2574E-01     Volume (a.u.^3)      6748.3346
+ PW_GRID|   Bounds   1            -45      44                Points:          90
+ PW_GRID|   Bounds   2            -45      44                Points:          90
+ PW_GRID|   Bounds   3            -45      44                Points:          90
+ PW_GRID| Volume element (a.u.^3)  0.9257E-02     Volume (a.u.^3)      6748.3346
  PW_GRID| Grid span                                                    FULLSPACE
  PW_GRID|   Distribution                         Average         Max         Min
- PW_GRID|   G-Vectors                            10485.8       10560       10432
- PW_GRID|   G-Rays                                 163.8         165         163
- PW_GRID|   Real Space Points                    10485.8       12288        8192
+ PW_GRID|   G-Vectors                            29160.0       29250       29070
+ PW_GRID|   G-Rays                                 324.0         325         323
+ PW_GRID|   Real Space Points                    29160.0       32400       24300
 
  PW_GRID| Information for grid number                                          3
  PW_GRID| Grid distributed over                                    25 processors
  PW_GRID| Real space group dimensions                                    25    1
  PW_GRID| the grid is blocked:                                                NO
- PW_GRID| Cutoff [a.u.]                                                     16.7
+ PW_GRID| Cutoff [a.u.]                                                     33.3
  PW_GRID| spherical cutoff:                                                   NO
- PW_GRID|   Bounds   1            -18      17                Points:          36
- PW_GRID|   Bounds   2            -18      17                Points:          36
- PW_GRID|   Bounds   3            -18      17                Points:          36
- PW_GRID| Volume element (a.u.^3)  0.1446         Volume (a.u.^3)      6748.3346
+ PW_GRID|   Bounds   1            -27      26                Points:          54
+ PW_GRID|   Bounds   2            -27      26                Points:          54
+ PW_GRID|   Bounds   3            -27      26                Points:          54
+ PW_GRID| Volume element (a.u.^3)  0.4286E-01     Volume (a.u.^3)      6748.3346
  PW_GRID| Grid span                                                    FULLSPACE
  PW_GRID|   Distribution                         Average         Max         Min
- PW_GRID|   G-Vectors                             1866.2        1908        1836
- PW_GRID|   G-Rays                                  51.8          53          51
- PW_GRID|   Real Space Points                     1866.2        2592        1296
+ PW_GRID|   G-Vectors                             6298.6        6318        6264
+ PW_GRID|   G-Rays                                 116.6         117         116
+ PW_GRID|   Real Space Points                     6298.6        8748        5832
 
  PW_GRID| Information for grid number                                          4
  PW_GRID| Grid distributed over                                    25 processors
- PW_GRID| Real space group dimensions                                     5    5
+ PW_GRID| Real space group dimensions                                    25    1
  PW_GRID| the grid is blocked:                                                NO
- PW_GRID| Cutoff [a.u.]                                                      5.6
+ PW_GRID| Cutoff [a.u.]                                                     11.1
  PW_GRID| spherical cutoff:                                                   NO
- PW_GRID|   Bounds   1            -12      11                Points:          24
- PW_GRID|   Bounds   2            -12      11                Points:          24
- PW_GRID|   Bounds   3            -12      11                Points:          24
- PW_GRID| Volume element (a.u.^3)  0.4882         Volume (a.u.^3)      6748.3346
+ PW_GRID|   Bounds   1            -15      14                Points:          30
+ PW_GRID|   Bounds   2            -15      14                Points:          30
+ PW_GRID|   Bounds   3            -15      14                Points:          30
+ PW_GRID| Volume element (a.u.^3)  0.2499         Volume (a.u.^3)      6748.3346
  PW_GRID| Grid span                                                    FULLSPACE
  PW_GRID|   Distribution                         Average         Max         Min
- PW_GRID|   G-Vectors                              553.0         600         504
- PW_GRID|   G-Rays                                  23.0          25          21
- PW_GRID|   Real Space Points                      553.0         600         384
+ PW_GRID|   G-Vectors                             1080.0        1110        1050
+ PW_GRID|   G-Rays                                  36.0          37          35
+ PW_GRID|   Real Space Points                     1080.0        1800         900
 
  POISSON| Solver                                                        PERIODIC
  POISSON| Periodicity                                                        XYZ
 
  RS_GRID| Information for grid number                                          1
- RS_GRID|   Bounds   1            -54      53                Points:         108
- RS_GRID|   Bounds   2            -54      53                Points:         108
- RS_GRID|   Bounds   3            -54      53                Points:         108
+ RS_GRID|   Bounds   1            -75      74                Points:         150
+ RS_GRID|   Bounds   2            -75      74                Points:         150
+ RS_GRID|   Bounds   3            -75      74                Points:         150
  RS_GRID| Real space distribution over                                  5 groups
  RS_GRID| Real space distribution along direction                              2
  RS_GRID| Border size                                                         23
@@ -501,28 +501,28 @@
  RS_GRID| Real space distribution along direction                              3
  RS_GRID| Border size                                                         23
  RS_GRID|   Distribution                         Average         Max         Min
- RS_GRID|   Planes                                  67.6          68          67
+ RS_GRID|   Planes                                  76.0          76          76
  RS_GRID|   Distribution                         Average         Max         Min
- RS_GRID|   Planes                                  67.6          68          67
+ RS_GRID|   Planes                                  76.0          76          76
 
  RS_GRID| Information for grid number                                          2
- RS_GRID|   Bounds   1            -32      31                Points:          64
- RS_GRID|   Bounds   2            -32      31                Points:          64
- RS_GRID|   Bounds   3            -32      31                Points:          64
+ RS_GRID|   Bounds   1            -45      44                Points:          90
+ RS_GRID|   Bounds   2            -45      44                Points:          90
+ RS_GRID|   Bounds   3            -45      44                Points:          90
  RS_GRID| Real space fully replicated
  RS_GRID| Group size                                                           1
 
  RS_GRID| Information for grid number                                          3
- RS_GRID|   Bounds   1            -18      17                Points:          36
- RS_GRID|   Bounds   2            -18      17                Points:          36
- RS_GRID|   Bounds   3            -18      17                Points:          36
+ RS_GRID|   Bounds   1            -27      26                Points:          54
+ RS_GRID|   Bounds   2            -27      26                Points:          54
+ RS_GRID|   Bounds   3            -27      26                Points:          54
  RS_GRID| Real space fully replicated
  RS_GRID| Group size                                                           1
 
  RS_GRID| Information for grid number                                          4
- RS_GRID|   Bounds   1            -12      11                Points:          24
- RS_GRID|   Bounds   2            -12      11                Points:          24
- RS_GRID|   Bounds   3            -12      11                Points:          24
+ RS_GRID|   Bounds   1            -15      14                Points:          30
+ RS_GRID|   Bounds   2            -15      14                Points:          30
+ RS_GRID|   Bounds   3            -15      14                Points:          30
  RS_GRID| Real space fully replicated
  RS_GRID| Group size                                                           1
 
@@ -561,7 +561,15 @@
               Average number of matrix elements per CPU:                      18
               Maximum number of matrix elements per CPU:                     179
 
- Number of electrons:                                                          8
+ Spin 1
+
+ Number of electrons:                                                          4
+ Number of occupied orbitals:                                                  4
+ Number of molecular orbitals:                                                 4
+
+ Spin 2
+
+ Number of electrons:                                                          4
  Number of occupied orbitals:                                                  4
  Number of molecular orbitals:                                                 4
 
@@ -655,9 +663,16 @@
  
 
  Total Electron Density at R=0:                                         0.425022
- Re-scaling the density matrix to get the right number of electrons
+
+ Spin 1
+ Re-scaling the density matrix to get the right number of electrons for spin 1
                   # Electrons              Trace(P)               Scaling factor
-                            8                 8.000                        1.000
+                            4                 4.000                        1.000
+
+ Spin 2
+ Re-scaling the density matrix to get the right number of electrons for spin 2
+                  # Electrons              Trace(P)               Scaling factor
+                            4                 4.000                        1.000
 
 
  SCF WAVEFUNCTION OPTIMIZATION
@@ -675,143 +690,93 @@
 
   Step     Update method      Time    Convergence         Total energy    Change
   ------------------------------------------------------------------------------
-     1 OT DIIS     0.15E+00    0.2     0.33213963       -16.7799983821 -1.68E+01
-     2 OT DIIS     0.15E+00    0.1     0.28218588       -16.7352147769  4.48E-02
-     3 OT DIIS     0.15E+00    0.1     0.09471147       -17.1805261839 -4.45E-01
-     4 OT DIIS     0.15E+00    0.1     0.03014404       -17.2144921908 -3.40E-02
-     5 OT DIIS     0.15E+00    0.1     0.03293943       -17.2164987372 -2.01E-03
-     6 OT DIIS     0.15E+00    0.1     0.00669283       -17.2194542575 -2.96E-03
-     7 OT DIIS     0.15E+00    0.1     0.00137641       -17.2195677850 -1.14E-04
-     8 OT DIIS     0.15E+00    0.1     0.00047317       -17.2195728923 -5.11E-06
-     9 OT DIIS     0.15E+00    0.1     0.00008600       -17.2195737833 -8.91E-07
-    10 OT DIIS     0.15E+00    0.1     0.00000772       -17.2195738127 -2.95E-08
-    11 OT DIIS     0.15E+00    0.1     0.00000146       -17.2195738134 -7.08E-10
-    12 OT DIIS     0.15E+00    0.1     0.00000038       -17.2195738135 -2.63E-11
+     1 OT DIIS     0.15E+00    0.5     0.16612777       -16.7798541760 -1.68E+01
+     2 OT DIIS     0.15E+00    0.5     0.06491377       -17.1246159561 -3.45E-01
+     3 OT DIIS     0.15E+00    0.5     0.02955252       -17.1853437113 -6.07E-02
+     4 OT DIIS     0.15E+00    0.5     0.01213257       -17.2136308872 -2.83E-02
+     5 OT DIIS     0.15E+00    0.5     0.00660145       -17.2178036951 -4.17E-03
+     6 OT DIIS     0.15E+00    0.5     0.00181104       -17.2193877294 -1.58E-03
+     7 OT DIIS     0.15E+00    0.5     0.00074839       -17.2194979349 -1.10E-04
+     8 OT DIIS     0.15E+00    0.5     0.00025526       -17.2195106991 -1.28E-05
+     9 OT DIIS     0.15E+00    0.5     0.00009984       -17.2195127708 -2.07E-06
+    10 OT DIIS     0.15E+00    0.5     0.00004793       -17.2195129517 -1.81E-07
+    11 OT DIIS     0.15E+00    0.5     0.00000636       -17.2195130181 -6.64E-08
+    12 OT DIIS     0.15E+00    0.5     0.00000385       -17.2195130193 -1.13E-09
+    13 OT DIIS     0.15E+00    0.5     0.00000132       -17.2195130199 -6.11E-10
+    14 OT DIIS     0.15E+00    0.5     0.00000030       -17.2195130200 -7.50E-11
+    15 OT DIIS     0.15E+00    0.5     0.00000018       -17.2195130200 -2.66E-12
+    16 OT DIIS     0.15E+00    0.5     0.00000004       -17.2195130200 -1.30E-12
 
-  *** SCF run converged in    12 steps ***
+  *** SCF run converged in    16 steps ***
 
 
-  Electronic density on regular grids:         -7.9999999659        0.0000000341
+  Electronic density on regular grids:         -8.0000000000        0.0000000000
   Core density on regular grids:                7.9999999997       -0.0000000003
-  Total charge density on r-space grids:        0.0000000339
-  Total charge density g-space grids:           0.0000000339
+  Total charge density on r-space grids:       -0.0000000002
+  Total charge density g-space grids:          -0.0000000002
 
   Overlap energy of the core charge distribution:               0.00000004355362
   Self energy of the core charge distribution:                -44.34715499673765
-  Core Hamiltonian energy:                                     12.88087376330795
-  Hartree energy:                                              18.46756005409274
-  Exchange-correlation energy:                                 -4.22048917297305
+  Core Hamiltonian energy:                                     12.88105519752811
+  Hartree energy:                                              18.46742358311677
+  Exchange-correlation energy:                                 -4.22047334271533
   Dispersion energy:                                           -0.00036350471677
 
-  Total energy:                                               -17.21957381347316
+  Total energy:                                               -17.21951301997126
 
-  outer SCF iter =    1 RMS gradient =   0.38E-06 energy =        -17.2195738135
-
-  ----------------------------------- OT ---------------------------------------
-  Minimizer      : DIIS                : direct inversion
-                                         in the iterative subspace
-                                         using   7 DIIS vectors
-                                         safer DIIS on
-  Preconditioner : FULL_ALL            : diagonalization, state selective
-  Precond_solver : DEFAULT
-  stepsize       :    0.15000000                  energy_gap     :    0.08000000
-  eps_taylor     :   0.10000E-15                  max_taylor     :             4
-  ----------------------------------- OT ---------------------------------------
-
-  Step     Update method      Time    Convergence         Total energy    Change
-  ------------------------------------------------------------------------------
-     1 OT DIIS     0.15E+00    0.3     0.00000011       -17.2195738135 -1.78E-12
-
-  *** SCF run converged in     1 steps ***
+  outer SCF iter =    1 RMS gradient =   0.40E-07 energy =        -17.2195130200
+  outer SCF loop converged in   1 iterations or   16 steps
 
 
-  Electronic density on regular grids:         -7.9999999659        0.0000000341
-  Core density on regular grids:                7.9999999997       -0.0000000003
-  Total charge density on r-space grids:        0.0000000339
-  Total charge density g-space grids:           0.0000000339
-
-  Overlap energy of the core charge distribution:               0.00000004355362
-  Self energy of the core charge distribution:                -44.34715499673765
-  Core Hamiltonian energy:                                     12.88087410949121
-  Hartree energy:                                              18.46755971771659
-  Exchange-correlation energy:                                 -4.22048918278194
-  Dispersion energy:                                           -0.00036350471677
-
-  Total energy:                                               -17.21957381347494
-
-  outer SCF iter =    2 RMS gradient =   0.11E-06 energy =        -17.2195738135
-
-  ----------------------------------- OT ---------------------------------------
-  Minimizer      : DIIS                : direct inversion
-                                         in the iterative subspace
-                                         using   7 DIIS vectors
-                                         safer DIIS on
-  Preconditioner : FULL_ALL            : diagonalization, state selective
-  Precond_solver : DEFAULT
-  stepsize       :    0.15000000                  energy_gap     :    0.08000000
-  eps_taylor     :   0.10000E-15                  max_taylor     :             4
-  ----------------------------------- OT ---------------------------------------
-
-  Step     Update method      Time    Convergence         Total energy    Change
-  ------------------------------------------------------------------------------
-     1 OT DIIS     0.15E+00    0.5     0.00000004       -17.2195738135 -1.24E-13
-
-  *** SCF run converged in     1 steps ***
-
-
-  Electronic density on regular grids:         -7.9999999659        0.0000000341
-  Core density on regular grids:                7.9999999997       -0.0000000003
-  Total charge density on r-space grids:        0.0000000339
-  Total charge density g-space grids:           0.0000000339
-
-  Overlap energy of the core charge distribution:               0.00000004355362
-  Self energy of the core charge distribution:                -44.34715499673765
-  Core Hamiltonian energy:                                     12.88087401219119
-  Hartree energy:                                              18.46755980143847
-  Exchange-correlation energy:                                 -4.22048916920392
-  Dispersion energy:                                           -0.00036350471677
-
-  Total energy:                                               -17.21957381347507
-
-  outer SCF iter =    3 RMS gradient =   0.44E-07 energy =        -17.2195738135
-  outer SCF loop converged in   3 iterations or   14 steps
-
+  Integrated absolute spin density  :                               0.0000000000
+  Ideal and single determinant S**2 :                    0.000000       0.000000
 
  !-----------------------------------------------------------------------------!
                      Mulliken Population Analysis
 
- #  Atom  Element  Kind  Atomic population                           Net charge
-       1     O        1          6.253159                             -0.253159
-       2     H        2          0.873212                              0.126788
-       3     H        2          0.873629                              0.126371
- # Total charge                              8.000000                  0.000000
+ #  Atom  Element  Kind  Atomic population (alpha,beta) Net charge  Spin moment
+       1     O        1         3.126538     3.126538    -0.253076     0.000000
+       2     H        2         0.436626     0.436626     0.126748     0.000000
+       3     H        2         0.436836     0.436836     0.126328    -0.000000
+ # Total charge and spin        4.000000     4.000000     0.000000     0.000000
 
  !-----------------------------------------------------------------------------!
 
  !-----------------------------------------------------------------------------!
                            Hirshfeld Charges
 
-  #Atom  Element  Kind  Ref Charge     Population                    Net charge
-      1       O      1       6.000          7.118                        -1.118
-      2       H      2       1.000          0.436                         0.564
-      3       H      2       1.000          0.436                         0.564
+  #Atom  Element  Kind  Ref Charge     Population       Spin moment  Net charge
+      1       O      1       6.000    3.559   3.559            0.000     -1.118
+      2       H      2       1.000    0.218   0.218            0.000      0.564
+      3       H      2       1.000    0.218   0.218           -0.000      0.564
 
   Total Charge                                                            0.011
  !-----------------------------------------------------------------------------!
   
   Eigenvalues of the occupied subspace spin            1
  ---------------------------------------------
-      -0.92114277     -0.48516114     -0.32691635     -0.25846869
- Fermi Energy [eV] :   -7.033291
+      -0.92112461     -0.48512528     -0.32687733     -0.25843514
+ Fermi Energy [eV] :   -7.032378
+  
+  Eigenvalues of the occupied subspace spin            2
+ ---------------------------------------------
+      -0.92112461     -0.48512528     -0.32687733     -0.25843514
+ Fermi Energy [eV] :   -7.032378
   
   Lowest Eigenvalues of the unoccupied subspace spin            1
  -----------------------------------------------------
-  Reached convergence in           89  iterations 
-       0.13113040
+  Reached convergence in           83  iterations 
+       0.13114391
   
- HOMO - LUMO gap [eV] :   10.601531
+  Lowest Eigenvalues of the unoccupied subspace spin            2
+ -----------------------------------------------------
+  Reached convergence in           83  iterations 
+       0.13114391
+  
+ HOMO - LUMO gap [eV] :   10.600985
+ HOMO - LUMO gap [eV] :   10.600985
 
- ENERGY| Total FORCE_EVAL ( QS ) energy (a.u.):              -17.219573813475069
+ ENERGY| Total FORCE_EVAL ( QS ) energy (a.u.):              -17.219513019971256
 
 
  -------------------------------------------------------------------------------
@@ -820,54 +785,54 @@
  -                                                                             -
  -------------------------------------------------------------------------------
  COUNTER                                    TOTAL       BLAS       SMM       ACC
- flops     4 x     1 x     4                   96     100.0%      0.0%      0.0%
- flops     4 x     1 x     5                  240     100.0%      0.0%      0.0%
- flops     5 x     1 x     4                  240     100.0%      0.0%      0.0%
- flops     4 x     1 x    13                  312     100.0%      0.0%      0.0%
- flops    13 x     1 x     4                  312     100.0%      0.0%      0.0%
- flops     5 x     5 x     5                 1500     100.0%      0.0%      0.0%
- flops     5 x     5 x    13                 1950     100.0%      0.0%      0.0%
- flops     1 x     1 x     5                 3460     100.0%      0.0%      0.0%
- flops     1 x     1 x    13                 4498     100.0%      0.0%      0.0%
- flops     5 x    13 x     4                 7800     100.0%      0.0%      0.0%
- flops    13 x     5 x     4                 7800     100.0%      0.0%      0.0%
- flops     5 x     5 x     4                 9000     100.0%      0.0%      0.0%
- flops     4 x     4 x     4                13312     100.0%      0.0%      0.0%
- flops     4 x     4 x     5                19840     100.0%      0.0%      0.0%
- flops    13 x    13 x     4                20280     100.0%      0.0%      0.0%
- flops     5 x     4 x     4                23360     100.0%      0.0%      0.0%
- flops     4 x     4 x    13                25792     100.0%      0.0%      0.0%
- flops    13 x     4 x     4                30368     100.0%      0.0%      0.0%
- flops     5 x     1 x     5                47650     100.0%      0.0%      0.0%
- flops    13 x     1 x     5                53170     100.0%      0.0%      0.0%
- flops     5 x     1 x    13                53170     100.0%      0.0%      0.0%
- flops    13 x     1 x    13                61516     100.0%      0.0%      0.0%
- flops     5 x     4 x     5                68800     100.0%      0.0%      0.0%
- flops    13 x     4 x     5                89440     100.0%      0.0%      0.0%
- flops     5 x     4 x    13                89440     100.0%      0.0%      0.0%
- flops    13 x     4 x    13               116272     100.0%      0.0%      0.0%
- flops inhomo. stacks                       13156     100.0%      0.0%      0.0%
- flops total                       762.774000E+03     100.0%      0.0%      0.0%
- flops max/rank                    462.754000E+03     100.0%      0.0%      0.0%
- matmuls inhomo. stacks                      1218     100.0%      0.0%      0.0%
- matmuls total                               5093     100.0%      0.0%      0.0%
- number of processed stacks                  5093     100.0%      0.0%      0.0%
+ flops     4 x     1 x     4                  192     100.0%      0.0%      0.0%
+ flops     4 x     1 x     5                  480     100.0%      0.0%      0.0%
+ flops     5 x     1 x     4                  480     100.0%      0.0%      0.0%
+ flops     4 x     1 x    13                  624     100.0%      0.0%      0.0%
+ flops    13 x     1 x     4                  624     100.0%      0.0%      0.0%
+ flops     5 x     5 x     5                 3000     100.0%      0.0%      0.0%
+ flops     5 x     5 x    13                 3900     100.0%      0.0%      0.0%
+ flops     1 x     1 x     5                 6440     100.0%      0.0%      0.0%
+ flops     1 x     1 x    13                 8372     100.0%      0.0%      0.0%
+ flops     5 x    13 x     4                17680     100.0%      0.0%      0.0%
+ flops    13 x     5 x     4                17680     100.0%      0.0%      0.0%
+ flops     5 x     5 x     4                20400     100.0%      0.0%      0.0%
+ flops     4 x     4 x     4                35328     100.0%      0.0%      0.0%
+ flops     4 x     4 x     5                43520     100.0%      0.0%      0.0%
+ flops    13 x    13 x     4                45968     100.0%      0.0%      0.0%
+ flops     5 x     4 x     4                51840     100.0%      0.0%      0.0%
+ flops     4 x     4 x    13                56576     100.0%      0.0%      0.0%
+ flops    13 x     4 x     4                67392     100.0%      0.0%      0.0%
+ flops     5 x     1 x     5                89000     100.0%      0.0%      0.0%
+ flops    13 x     1 x     5                99320     100.0%      0.0%      0.0%
+ flops     5 x     1 x    13                99320     100.0%      0.0%      0.0%
+ flops    13 x     1 x    13               114920     100.0%      0.0%      0.0%
+ flops     5 x     4 x     5               125600     100.0%      0.0%      0.0%
+ flops    13 x     4 x     5               163280     100.0%      0.0%      0.0%
+ flops     5 x     4 x    13               163280     100.0%      0.0%      0.0%
+ flops    13 x     4 x    13               212264     100.0%      0.0%      0.0%
+ flops inhomo. stacks                       24656     100.0%      0.0%      0.0%
+ flops total                         1.472136E+06     100.0%      0.0%      0.0%
+ flops max/rank                    900.376000E+03     100.0%      0.0%      0.0%
+ matmuls inhomo. stacks                      2328     100.0%      0.0%      0.0%
+ matmuls total                               9789     100.0%      0.0%      0.0%
+ number of processed stacks                  9789     100.0%      0.0%      0.0%
  average stack size                                     1.0       0.0       0.0
- marketing flops                   783.856750E+03
+ marketing flops                     1.516278E+06
  -------------------------------------------------------------------------------
- # multiplications                           1533
- max memory usage/rank             136.671232E+06
+ # multiplications                           3045
+ max memory usage/rank             206.057472E+06
  # max total images/rank                        1
  # max 3D layers                                1
- # MPI messages exchanged                  306600
+ # MPI messages exchanged                  609000
  MPI messages size (bytes):
-  total size                         6.682048E+06
+  total size                        12.742944E+06
   min size                           0.000000E+00
   max size                           1.352000E+03
-  average size                      21.794025E+00
+  average size                      20.924374E+00
  MPI breakdown and total messages size (bytes):
-             size <=      128              291792                   816928
-       128 < size <=     8192               14808                  5865120
+             size <=      128              580560                  1624704
+       128 < size <=     8192               28440                 11118240
       8192 < size <=    32768                   0                        0
      32768 < size <=   131072                   0                        0
     131072 < size <=  4194304                   0                        0
@@ -875,15 +840,15 @@
   16777216 < size                               0                        0
  -------------------------------------------------------------------------------
  
- MEMORY| Estimated peak process memory [MiB]                                 131
+ MEMORY| Estimated peak process memory [MiB]                                 197
 
  -------------------------------------------------------------------------------
  ----                             MULTIGRID INFO                            ----
  -------------------------------------------------------------------------------
- count for grid        1:         109598          cutoff [a.u.]          150.00
- count for grid        2:          32830          cutoff [a.u.]           50.00
- count for grid        3:          20034          cutoff [a.u.]           16.67
- count for grid        4:           1721          cutoff [a.u.]            5.56
+ count for grid        1:          88871          cutoff [a.u.]          300.00
+ count for grid        2:          38138          cutoff [a.u.]          100.00
+ count for grid        3:          24826          cutoff [a.u.]           33.33
+ count for grid        4:          12348          cutoff [a.u.]           11.11
  total gridlevel count  :         164183
 
  -------------------------------------------------------------------------------
@@ -893,18 +858,18 @@
  -------------------------------------------------------------------------------
 
  ROUTINE             CALLS      AVE VOLUME [Bytes]
- MP_Group              127
- MP_Bcast              560                 659458.
- MP_Allreduce         4464                     58.
- MP_Sync                66
- MP_Alltoall          6176                 100921.
- MP_ISendRecv         2088                  41280.
- MP_Wait             89152
- MP_comm_split          62
- MP_ISend            31686                   4137.
- MP_IRecv            31686                   4117.
- MP_Recv                 3                    184.
- MP_Memory           59366
+ MP_Group              214
+ MP_Bcast             1029                 359689.
+ MP_Allreduce         8799                     57.
+ MP_Sync               124
+ MP_Alltoall         11659                 267372.
+ MP_ISendRecv         4752                 114528.
+ MP_Wait            177512
+ MP_comm_split         120
+ MP_ISend            62886                   7801.
+ MP_IRecv            62886                   7779.
+ MP_Recv                 6                    184.
+ MP_Memory          118168
  -------------------------------------------------------------------------------
 
 
@@ -1014,78 +979,70 @@
  -------------------------------------------------------------------------------
  SUBROUTINE                       CALLS  ASD         SELF TIME        TOTAL TIME
                                 MAXIMUM       AVERAGE  MAXIMUM  AVERAGE  MAXIMUM
- CP2K                                 1  1.0    0.061    0.092    3.930    3.932
- qs_energies                          1  2.0    0.012    0.023    3.390    3.396
- scf_env_do_scf                       1  3.0    0.000    0.002    2.157    2.158
- scf_env_do_scf_inner_loop           14  4.0    0.007    0.020    1.727    1.729
- qs_ks_update_qs_env                 17  5.0    0.000    0.000    1.337    1.338
- rebuild_ks_matrix                   14  6.0    0.000    0.001    1.336    1.338
- qs_ks_build_kohn_sham_matrix        14  7.0    0.009    0.016    1.336    1.338
- pw_transfer                        272  9.6    0.013    0.016    0.919    1.021
- fft_wrap_pw1pw2                    244 10.7    0.002    0.002    0.899    1.002
- dbcsr_multiply_generic            1533  8.3    0.050    0.058    0.976    0.991
- fft_wrap_pw1pw2_150                157 11.8    0.063    0.070    0.849    0.949
- scf_post_calculation_gpw             1  3.0    0.007    0.012    0.924    0.927
- make_lumo                            1  4.0    0.000    0.001    0.866    0.867
- ot_eigensolver                       1  5.0    0.002    0.003    0.862    0.863
- fft3d_ps                           244 12.7    0.431    0.510    0.742    0.844
- qs_vxc_create                       14  8.0    0.002    0.006    0.811    0.818
- xc_vxc_pw_create                    14  9.0    0.011    0.015    0.809    0.816
- ot_mini                            103  6.3    0.002    0.003    0.516    0.518
- rs_pw_transfer                     119  9.4    0.001    0.001    0.506    0.516
- xc_rho_set_and_dset_create          14 10.0    0.008    0.011    0.422    0.493
- qs_ot_get_derivative                59  7.5    0.002    0.003    0.481    0.482
- qs_rho_update_rho                   15  5.0    0.002    0.004    0.476    0.477
- calculate_rho_elec                  15  6.0    0.010    0.062    0.475    0.475
- init_scf_loop                        3  4.0    0.002    0.005    0.428    0.430
- density_rs2pw                       15  7.0    0.001    0.001    0.415    0.429
- make_m2s                          3066  9.3    0.037    0.042    0.403    0.424
- sum_up_and_integrate                14  8.0    0.009    0.017    0.367    0.394
- integrate_v_rspace                  14  9.0    0.010    0.045    0.358    0.387
- multiply_cannon                   1533  9.3    0.121    0.126    0.347    0.352
- mp_alltoall_z22v                   244 14.7    0.234    0.350    0.234    0.350
- qs_ot_get_p                        109  6.3    0.002    0.006    0.345    0.347
- potential_pw2rs                     14 10.0    0.001    0.001    0.338    0.340
- make_images                       3066 10.3    0.045    0.049    0.290    0.309
- qs_init_subsys                       1  2.0    0.011    0.015    0.285    0.291
- yz_to_x                            102 13.2    0.020    0.028    0.172    0.265
- qs_scf_new_mos                      14  5.0    0.001    0.006    0.250    0.256
- qs_scf_loop_do_ot                   14  6.0    0.000    0.001    0.249    0.251
- xc_functional_eval                  14 11.0    0.000    0.000    0.167    0.242
- pbe_lda_eval                        14 12.0    0.167    0.242    0.167    0.242
- ot_scf_mini                         14  7.0    0.001    0.001    0.239    0.240
- rs_pw_transfer_RS2PW_150            17  8.8    0.120    0.133    0.190    0.203
- qs_ot_get_derivative_diag           30  8.7    0.001    0.001    0.189    0.189
- rs_pw_transfer_PW2RS_150            15 11.7    0.113    0.124    0.183    0.188
- init_scf_run                         1  3.0    0.004    0.020    0.182    0.183
- scf_env_initial_rho_setup            1  4.0    0.002    0.010    0.177    0.181
- qs_ot_p2m_diag                      51  7.5    0.001    0.001    0.176    0.179
- qs_ot_get_derivative_taylor         29  8.2    0.001    0.001    0.156    0.157
- x_to_yz                            113 14.1    0.043    0.049    0.125    0.143
- mp_waitall_1                     88096 11.9    0.116    0.138    0.116    0.138
- calculate_first_density_matrix       1  5.0    0.005    0.019    0.134    0.137
- cp_dbcsr_syevd                      57  8.4    0.003    0.003    0.131    0.134
- make_images_sizes                 3066 11.3    0.003    0.005    0.113    0.131
- qs_ot_get_orbitals                 106  6.3    0.000    0.000    0.130    0.131
- mp_alltoall_i44                   3066 12.3    0.110    0.129    0.110    0.129
- mp_waitany                        1056 11.2    0.103    0.128    0.103    0.128
- init_qs_kind_set                     1  3.0    0.000    0.000    0.120    0.123
- init_qs_kind                         2  4.0    0.000    0.002    0.120    0.123
- init_orb_basis_set                   2  5.0    0.000    0.002    0.120    0.122
- init_cphi_and_sphi                   2  6.0    0.120    0.121    0.120    0.121
- qs_energies_init_hamiltonians        1  3.0    0.005    0.012    0.111    0.115
- cp_fm_syevd                         62  9.2    0.080    0.083    0.099    0.103
- dbcsr_create_new                 17034 10.8    0.047    0.056    0.085    0.092
- dbcsr_complete_redistribute        236  9.4    0.011    0.026    0.075    0.085
- qs_env_setup                         1  3.0    0.007    0.011    0.077    0.079
+ CP2K                                 1  1.0    0.072    0.096   10.940   10.945
+ qs_energies                          1  2.0    0.019    0.036   10.370   10.377
+ scf_env_do_scf                       1  3.0    0.000    0.002    8.408    8.409
+ scf_env_do_scf_inner_loop           16  4.0    0.003    0.004    7.933    7.933
+ qs_ks_update_qs_env                 17  5.0    0.000    0.000    5.940    5.941
+ rebuild_ks_matrix                   16  6.0    0.000    0.000    5.939    5.940
+ qs_ks_build_kohn_sham_matrix        16  7.0    0.011    0.015    5.939    5.940
+ pw_transfer                        571  9.7    0.034    0.041    4.615    4.994
+ fft_wrap_pw1pw2                    539 10.7    0.004    0.004    4.556    4.934
+ fft_wrap_pw1pw2_300                341 11.9    0.359    0.403    4.358    4.720
+ qs_vxc_create                       16  8.0    0.002    0.008    4.156    4.163
+ xc_vxc_pw_create                    16  9.0    0.098    0.103    4.154    4.163
+ fft3d_ps                           539 12.7    2.278    2.355    3.527    3.967
+ xc_rho_set_and_dset_create          16 10.0    0.049    0.053    2.055    2.237
+ qs_rho_update_rho                   17  5.0    0.000    0.001    2.003    2.004
+ calculate_rho_elec                  34  6.0    0.039    0.113    2.002    2.003
+ density_rs2pw                       34  7.0    0.001    0.002    1.819    1.841
+ rs_pw_transfer                     268  9.4    0.002    0.002    1.711    1.736
+ dbcsr_multiply_generic            3045  8.4    0.067    0.072    1.576    1.587
+ scf_post_calculation_gpw             1  3.0    0.007    0.013    1.494    1.500
+ sum_up_and_integrate                16  8.0    0.030    0.035    1.397    1.418
+ make_lumo                            1  4.0    0.000    0.000    1.400    1.400
+ ot_eigensolver                       2  5.0    0.002    0.003    1.394    1.394
+ integrate_v_rspace                  32  9.0    0.018    0.071    1.367    1.386
+ potential_pw2rs                     32 10.0    0.005    0.006    1.333    1.353
+ mp_alltoall_z22v                   539 14.7    0.768    1.276    0.768    1.276
+ yz_to_x                            265 13.1    0.217    0.243    0.690    1.094
+ ot_mini                            182  6.2    0.001    0.003    0.867    0.868
+ qs_ot_get_derivative               116  7.6    0.001    0.003    0.794    0.796
+ xc_functional_eval                  16 11.0    0.000    0.000    0.602    0.778
+ pbe_lsd_eval                        16 12.0    0.602    0.778    0.602    0.778
+ make_m2s                          6090  9.4    0.053    0.055    0.626    0.645
+ qs_ot_get_p                        206  6.3    0.002    0.009    0.634    0.635
+ x_to_yz                            274 14.3    0.255    0.272    0.550    0.621
+ rs_pw_transfer_RS2PW_300            36  8.9    0.398    0.435    0.586    0.612
+ multiply_cannon                   3045  9.4    0.194    0.201    0.580    0.590
+ rs_pw_transfer_PW2RS_300            34 11.8    0.376    0.395    0.559    0.585
+ qs_scf_new_mos                      16  5.0    0.000    0.003    0.517    0.519
+ qs_scf_loop_do_ot                   16  6.0    0.000    0.001    0.517    0.517
+ ot_scf_mini                         16  7.0    0.003    0.005    0.496    0.496
+ init_scf_loop                        1  4.0    0.001    0.003    0.474    0.475
+ make_images                       6090 10.4    0.069    0.072    0.453    0.473
+ mp_waitall_1                    175482 12.0    0.364    0.426    0.364    0.426
+ pw_gather_p                        265 12.1    0.349    0.372    0.349    0.372
+ qs_ot_get_derivative_diag           68  8.9    0.003    0.004    0.360    0.361
+ qs_ot_p2m_diag                     110  7.6    0.001    0.002    0.348    0.354
+ mp_waitany                        2030 11.3    0.263    0.321    0.263    0.321
+ pw_scatter_p                       274 13.3    0.300    0.314    0.300    0.314
+ qs_init_subsys                       1  2.0    0.014    0.021    0.287    0.295
+ init_scf_run                         1  3.0    0.004    0.015    0.283    0.286
+ scf_env_initial_rho_setup            1  4.0    0.002    0.009    0.279    0.284
+ pw_derive                          192 10.5    0.256    0.278    0.256    0.278
+ cp_dbcsr_syevd                     114  8.5    0.005    0.005    0.241    0.247
+ rs_pw_transfer_PW2RS_100            32 12.0    0.117    0.127    0.216    0.241
+ qs_ot_get_derivative_taylor         48  8.1    0.001    0.003    0.237    0.239
+ rs_pw_transfer_RS2PW_100            34  9.0    0.092    0.097    0.213    0.219
  -------------------------------------------------------------------------------
 
  The number of warnings for this run is : 0
  
  -------------------------------------------------------------------------------
-  **** **** ******  **  PROGRAM ENDED AT                 2018-09-27 08:43:18.812
- ***** ** ***  *** **   PROGRAM RAN ON                                      f270
+  **** **** ******  **  PROGRAM ENDED AT                 2018-10-12 10:00:30.049
+ ***** ** ***  *** **   PROGRAM RAN ON                                      g161
  **    ****   ******    PROGRAM RAN BY                                    ongari
- ***** **    ** ** **   PROGRAM PROCESS ID                                 17046
-  **** **  *******  **  PROGRAM STOPPED IN /home/ongari/x_corso_bonella/4_cp2k/1
-                                           _water_PBE
+ ***** **    ** ** **   PROGRAM PROCESS ID                                  1178
+  **** **  *******  **  PROGRAM STOPPED IN /scratch/ongari/proj45_cp2krestart/wa
+                                           ter/4

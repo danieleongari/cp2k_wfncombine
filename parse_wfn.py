@@ -1,13 +1,13 @@
 #!/usr/bin/env python3
 
-import argparse 
+import argparse
 from argparse import RawTextHelpFormatter #needed to go next line in the help text
 
 
 ######## agparse section
 parser = argparse.ArgumentParser(description="Program to read, CP2K's binary WFN file", formatter_class=RawTextHelpFormatter)
 
-parser.add_argument("wfnfile", 
+parser.add_argument("wfnfile",
                       type=str,
                       help="path to the WFN file to read\n")
 
@@ -37,7 +37,7 @@ hart_2_ev = 27.21138602
 def load_restart_wfn_file(file_restart, emin, emax, mpi_rank, mpi_size):
     """ Reads the molecular orbitals from cp2k restart wavefunction file in specified energy range
     Note that the energy range is in eV and with respect to HOMO energy.
-    
+
     Return:
     morb_composition[ispin][iatom][iset][ishell][iorb] = coefs[i_mo]
     morb_energies[ispin] = energies[i_mo] in eV with respect to HOMO
@@ -87,7 +87,7 @@ def load_restart_wfn_file(file_restart, emin, emax, mpi_rank, mpi_size):
         # homo - index of the HOMO
         # lfomo - ???
         # nelectron - number of electrons
-        
+
         # Note that "homo" is affected by smearing. to have the correct, T=0K homo:
         if nspin == 1:
             i_homo = int(nelectron/2) - 1
@@ -99,11 +99,11 @@ def load_restart_wfn_file(file_restart, emin, emax, mpi_rank, mpi_size):
 
         evals = evals_occs[:int(len(evals_occs)/2)]
         occs = evals_occs[int(len(evals_occs)/2):]
-        
+
         evals *= hart_2_ev
         homo_en = evals[i_homo]
         homo_ens.append(homo_en)
-        
+
         try:
             ind_start = np.where(evals >= homo_en + emin)[0][0]
         except:
@@ -112,9 +112,9 @@ def load_restart_wfn_file(file_restart, emin, emax, mpi_rank, mpi_size):
             ind_end = np.where(evals > homo_en + emax)[0][0] - 1
         except:
             ind_end = len(evals)-1
-        
+
         num_selected_orbs = ind_end - ind_start + 1
-        
+
         # Select orbitals for the current mpi rank
         base_orb_per_rank = int(np.floor(num_selected_orbs/mpi_size))
         extra_orbs =  num_selected_orbs - base_orb_per_rank*mpi_size
@@ -127,10 +127,10 @@ def load_restart_wfn_file(file_restart, emin, emax, mpi_rank, mpi_size):
 
         print("R%d/%d, loading indexes %d:%d / %d:%d"%(mpi_rank, mpi_size,
             loc_ind_start, loc_ind_end, ind_start, ind_end))
-                
+
         ### ---------------------------------------------------------------------
         ### Build up the structure of python lists to hold the morb_composition
-        
+
         morb_composition.append([]) # 1: spin index
         shell_offset = 0
         norb_offset = 0
@@ -155,10 +155,10 @@ def load_restart_wfn_file(file_restart, emin, emax, mpi_rank, mpi_size):
                         # And this will contain the array of coeffs corresponding to each MO
                         orb_offset += 1
         ### ---------------------------------------------------------------------
-        
+
         ### ---------------------------------------------------------------------
         ### Read the coefficients from file and put to the morb_composition list
-        
+
         morb_energies.append([])
         morb_occs.append([])
 
@@ -173,7 +173,7 @@ def load_restart_wfn_file(file_restart, emin, emax, mpi_rank, mpi_size):
                     break
                 else:
                     continue
-            
+
             if first_imo == -1:
                 first_imo = imo
 
@@ -181,7 +181,7 @@ def load_restart_wfn_file(file_restart, emin, emax, mpi_rank, mpi_size):
 
             morb_energies[ispin].append(evals[imo])
             morb_occs[ispin].append(occs[imo])
-            
+
             for iatom in range(len(morb_composition[ispin])):
                 for iset in range(len(morb_composition[ispin][iatom])):
                     for ishell in range(len(morb_composition[ispin][iatom][iset])):
@@ -189,7 +189,7 @@ def load_restart_wfn_file(file_restart, emin, emax, mpi_rank, mpi_size):
                             morb_composition[ispin][iatom][iset][ishell][iorb].append(coefs[orb_offset])
                             orb_offset += 1
         ### ---------------------------------------------------------------------
-        
+
         ### ---------------------------------------------------------------------
         # Convert i_mo layer to numpy array
         for iatom in range(len(morb_composition[ispin])):
@@ -212,10 +212,10 @@ def load_restart_wfn_file(file_restart, emin, emax, mpi_rank, mpi_size):
         ref_energy = homo_ens[0]
     else:
         ref_energy = (homo_ens[0] + homo_ens[1]) / 2
-    
+
     ### ---------------------------------------------------------------------
     ### Select orbitals and energy and occupation values in specified range
-    
+
     for ispin in range(nspin):
         morb_energies[ispin] -= ref_energy
         first_imo = np.searchsorted(morb_energies[ispin], emin)
@@ -235,7 +235,7 @@ def load_restart_wfn_file(file_restart, emin, emax, mpi_rank, mpi_size):
 
         loc_homo_inds[ispin] -= first_imo
     ### ---------------------------------------------------------------------
-        
+
     inpf.close()
     homo_inds = [loc_homo_inds, glob_homo_inds, cp2k_homo_inds]
     return morb_composition, morb_energies, morb_occs, homo_inds, ref_energy
@@ -267,8 +267,8 @@ for ispin in range(nspin):
 
     nmo, homo, lfomo, nelectron = data.read_ints()
     print('Number of molecular orbitals: {}'.format(nmo))
-    print('Index of the HOMO: {}'.format(homo))
-    print('???: {}'.format(lfomo))
+    print('Number of occupuied MOs: {}'.format(homo))
+    print('Number of virtual MOs: {}'.format(lfomo))
     print('Number of electrons: {}'.format(nelectron))
 
 

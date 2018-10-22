@@ -11,11 +11,11 @@
  DBCSR| Communication thread load                                             87
 
 
-  **** **** ******  **  PROGRAM STARTED AT               2018-10-17 16:47:33.484
+  **** **** ******  **  PROGRAM STARTED AT               2018-10-17 18:24:33.615
  ***** ** ***  *** **   PROGRAM STARTED ON                                  g013
  **    ****   ******    PROGRAM STARTED BY                                 macer
- ***** **    ** ** **   PROGRAM PROCESS ID                                  1673
-  **** **  *******  **  PROGRAM STARTED IN         /home/macer/8_BSSE_test/6_Aab
+ ***** **    ** ** **   PROGRAM PROCESS ID                                 23688
+  **** **  *******  **  PROGRAM STARTED IN         /home/macer/8_BSSE_test/7_Bab
 
  CP2K| version string:                                          CP2K version 5.1
  CP2K| source code revision number:                                    svn:18091
@@ -49,12 +49,12 @@
  MEMORY| system memory details [Kb]
  MEMORY|                        rank 0           min           max       average
  MEMORY| MemTotal            197738988     197738988     197738988     197738988
- MEMORY| MemFree             154478584     154478584     179333320     166652332
- MEMORY| Buffers                  2920          1992          2920          2465
- MEMORY| Cached                 529164        269592        529164        402026
- MEMORY| Slab                  3509656       2400992       3509656       2966636
- MEMORY| SReclaimable          1382984        964264       1382984       1177896
- MEMORY| MemLikelyFree       156393652     156393652     180569168     168234721
+ MEMORY| MemFree             175570948     175570708     179313868     177403970
+ MEMORY| Buffers                  2444          2444         13924          8066
+ MEMORY| Cached                 543564        283064        543564        415973
+ MEMORY| Slab                  3470568       2399224       3470568       2945828
+ MEMORY| SReclaimable          1369784        963612       1369784       1170842
+ MEMORY| MemLikelyFree       177486740     177486484     180574592     178998853
 
 
  *** Fundamental physical constants (SI units) ***
@@ -289,27 +289,7 @@
                                                          0.496955       0.273538
                                                          0.162492       0.006620
 
-     GTH Potential information for                                       GTH-PBE
-
-       Description:                       Goedecker-Teter-Hutter pseudopotential
-                                           Goedecker et al., PRB 54, 1703 (1996)
-                                          Hartwigsen et al., PRB 58, 3641 (1998)
-                                                      Krack, TCA 114, 145 (2005)
-
-       Gaussian exponent of the core charge distribution:               8.360253
-       Electronic configuration (s p d ...):                               2   4
-
-       Parameters of the local part of the GTH pseudopotential:
-
-                          rloc        C1          C2          C3          C4
-                        0.244554  -16.667215    2.487311
-
-       Parameters of the non-local part of the GTH pseudopotential:
-
-                   l      r(l)      h(i,j,l)
-
-                   0    0.220956   18.337458
-                   1    0.211332
+     The atoms of this atomic kind are GHOST atoms!
 
   2. Atomic kind: H_frm                                 Number of atoms:       2
 
@@ -354,20 +334,7 @@
                                                          0.239116       0.080105
                                                          0.082193       0.033440
 
-     GTH Potential information for                                       GTH-PBE
-
-       Description:                       Goedecker-Teter-Hutter pseudopotential
-                                           Goedecker et al., PRB 54, 1703 (1996)
-                                          Hartwigsen et al., PRB 58, 3641 (1998)
-                                                      Krack, TCA 114, 145 (2005)
-
-       Gaussian exponent of the core charge distribution:              12.500000
-       Electronic configuration (s p d ...):                                   1
-
-       Parameters of the local part of the GTH pseudopotential:
-
-                          rloc        C1          C2          C3          C4
-                        0.200000   -4.178900    0.724463
+     The atoms of this atomic kind are GHOST atoms!
 
   3. Atomic kind: O_ads                                 Number of atoms:       2
 
@@ -459,7 +426,27 @@
                                                          0.496955       0.273538
                                                          0.162492       0.006620
 
-     The atoms of this atomic kind are GHOST atoms!
+     GTH Potential information for                                       GTH-PBE
+
+       Description:                       Goedecker-Teter-Hutter pseudopotential
+                                           Goedecker et al., PRB 54, 1703 (1996)
+                                          Hartwigsen et al., PRB 58, 3641 (1998)
+                                                      Krack, TCA 114, 145 (2005)
+
+       Gaussian exponent of the core charge distribution:               8.360253
+       Electronic configuration (s p d ...):                               2   4
+
+       Parameters of the local part of the GTH pseudopotential:
+
+                          rloc        C1          C2          C3          C4
+                        0.244554  -16.667215    2.487311
+
+       Parameters of the non-local part of the GTH pseudopotential:
+
+                   l      r(l)      h(i,j,l)
+
+                   0    0.220956   18.337458
+                   1    0.211332
 
   4. Atomic kind: C_ads                                 Number of atoms:       1
 
@@ -551,7 +538,27 @@
                                                          0.348157       0.028674
                                                          0.128212       0.029790
 
-     The atoms of this atomic kind are GHOST atoms!
+     GTH Potential information for                                       GTH-PBE
+
+       Description:                       Goedecker-Teter-Hutter pseudopotential
+                                           Goedecker et al., PRB 54, 1703 (1996)
+                                          Hartwigsen et al., PRB 58, 3641 (1998)
+                                                      Krack, TCA 114, 145 (2005)
+
+       Gaussian exponent of the core charge distribution:               4.364419
+       Electronic configuration (s p d ...):                               2   2
+
+       Parameters of the local part of the GTH pseudopotential:
+
+                          rloc        C1          C2          C3          C4
+                        0.338471   -8.803674    1.339211
+
+       Parameters of the non-local part of the GTH pseudopotential:
+
+                   l      r(l)      h(i,j,l)
+
+                   0    0.302576    9.622487
+                   1    0.291507
 
 
  MOLECULE KIND INFORMATION
@@ -579,12 +586,12 @@
 
   Atom  Kind  Element       X           Y           Z          Z(eff)       Mass
 
-       1     1 O    8    5.317935    8.826673    7.189616      6.00      15.9994
-       2     2 H    1    5.102610    8.838710    6.243829      1.00       1.0079
-       3     2 H    1    4.550676    8.404152    7.606535      1.00       1.0079
-       4     3 O    8    7.891894    7.192346    9.047571      0.00      15.9994
-       5     4 C    6    8.304738    7.547036    8.002966      0.00      12.0107
-       6     3 O    8    8.743152    7.888383    6.964402      0.00      15.9994
+       1     1 O    8    5.317935    8.826673    7.189616      0.00      15.9994
+       2     2 H    1    5.102610    8.838710    6.243829      0.00       1.0079
+       3     2 H    1    4.550676    8.404152    7.606535      0.00       1.0079
+       4     3 O    8    7.891894    7.192346    9.047571      6.00      15.9994
+       5     4 C    6    8.304738    7.547036    8.002966      4.00      12.0107
+       6     3 O    8    8.743152    7.888383    6.964402      6.00      15.9994
 
 
 
@@ -759,9 +766,9 @@
               Average number of matrix elements per CPU:                      51
               Maximum number of matrix elements per CPU:                     179
 
- Number of electrons:                                                          8
- Number of occupied orbitals:                                                  4
- Number of molecular orbitals:                                                 4
+ Number of electrons:                                                         16
+ Number of occupied orbitals:                                                  8
+ Number of molecular orbitals:                                                 8
 
  Number of orbital functions:                                                 62
  Number of independent orbital functions:                                     62
@@ -784,35 +791,34 @@
 
   Step     Update method      Time    Convergence         Total energy    Change
   ------------------------------------------------------------------------------
-     1 OT DIIS     0.15E+00    0.5     0.00243277       -17.2199982637 -1.72E+01
-     2 OT DIIS     0.15E+00    0.5     0.00098466       -17.2201527590 -1.54E-04
-     3 OT DIIS     0.15E+00    0.5     0.00005339       -17.2201831969 -3.04E-05
-     4 OT DIIS     0.15E+00    0.5     0.00001455       -17.2201832315 -3.47E-08
-     5 OT DIIS     0.15E+00    0.5     0.00000269       -17.2201832368 -5.28E-09
-     6 OT DIIS     0.15E+00    0.5     0.00000080       -17.2201832370 -1.33E-10
+     1 OT DIIS     0.15E+00    0.5     0.00113144       -37.7613793915 -3.78E+01
+     2 OT DIIS     0.15E+00    0.5     0.00045338       -37.7614460865 -6.67E-05
+     3 OT DIIS     0.15E+00    0.5     0.00000950       -37.7614588543 -1.28E-05
+     4 OT DIIS     0.15E+00    0.5     0.00000374       -37.7614588560 -1.69E-09
+     5 OT DIIS     0.15E+00    0.5     0.00000082       -37.7614588563 -3.33E-10
 
-  *** SCF run converged in     6 steps ***
-
-
-  Electronic density on regular grids:         -8.0000000000        0.0000000000
-  Core density on regular grids:                7.9999999997       -0.0000000003
-  Total charge density on r-space grids:       -0.0000000002
-  Total charge density g-space grids:          -0.0000000002
-
-  Overlap energy of the core charge distribution:               0.00000004275115
-  Self energy of the core charge distribution:                -44.34715499673765
-  Core Hamiltonian energy:                                     12.87629815462937
-  Hartree energy:                                              18.47100058415780
-  Exchange-correlation energy:                                 -4.21996714467906
-  Dispersion energy:                                           -0.00035987707263
-
-  Total energy:                                               -17.22018323695102
-
-  outer SCF iter =    1 RMS gradient =   0.80E-06 energy =        -17.2201832370
-  outer SCF loop converged in   1 iterations or    6 steps
+  *** SCF run converged in     5 steps ***
 
 
- ENERGY| Total FORCE_EVAL ( QS ) energy (a.u.):              -17.220183236951023
+  Electronic density on regular grids:        -15.9999999999        0.0000000001
+  Core density on regular grids:               15.9999999994       -0.0000000006
+  Total charge density on r-space grids:       -0.0000000005
+  Total charge density g-space grids:          -0.0000000005
+
+  Overlap energy of the core charge distribution:               0.00000211276849
+  Self energy of the core charge distribution:                -96.38742208476295
+  Core Hamiltonian energy:                                     27.67863747260946
+  Hartree energy:                                              39.59256068237571
+  Exchange-correlation energy:                                 -8.64430064649955
+  Dispersion energy:                                           -0.00093639277955
+
+  Total energy:                                               -37.76145885628839
+
+  outer SCF iter =    1 RMS gradient =   0.82E-06 energy =        -37.7614588563
+  outer SCF loop converged in   1 iterations or    5 steps
+
+
+ ENERGY| Total FORCE_EVAL ( QS ) energy (a.u.):              -37.761458856288392
 
 
  -------------------------------------------------------------------------------
@@ -821,41 +827,41 @@
  -                                                                             -
  -------------------------------------------------------------------------------
  COUNTER                                    TOTAL       BLAS       SMM       ACC
- flops     4 x     4 x     4                 4096     100.0%      0.0%      0.0%
- flops     5 x     5 x     4                 4200     100.0%      0.0%      0.0%
- flops     4 x     4 x     5                 8000     100.0%      0.0%      0.0%
- flops     5 x     4 x     4                 9920     100.0%      0.0%      0.0%
- flops     5 x    13 x     4                14560     100.0%      0.0%      0.0%
- flops    13 x     5 x     4                14560     100.0%      0.0%      0.0%
- flops     5 x     4 x     5                25600     100.0%      0.0%      0.0%
- flops     4 x     4 x    13                41600     100.0%      0.0%      0.0%
- flops    13 x     4 x     4                51584     100.0%      0.0%      0.0%
- flops    13 x    13 x     4                94640     100.0%      0.0%      0.0%
- flops    13 x     4 x     5               133120     100.0%      0.0%      0.0%
- flops     5 x     4 x    13               133120     100.0%      0.0%      0.0%
- flops    13 x     4 x    13               692224     100.0%      0.0%      0.0%
+ flops     5 x     5 x     8                 7200     100.0%      0.0%      0.0%
+ flops     5 x    13 x     8                24960     100.0%      0.0%      0.0%
+ flops    13 x     5 x     8                24960     100.0%      0.0%      0.0%
+ flops     8 x     8 x     8                26624     100.0%      0.0%      0.0%
+ flops     8 x     8 x     5                26880     100.0%      0.0%      0.0%
+ flops     5 x     8 x     8                33280     100.0%      0.0%      0.0%
+ flops     5 x     8 x     5                44800     100.0%      0.0%      0.0%
+ flops     8 x     8 x    13               139776     100.0%      0.0%      0.0%
+ flops    13 x    13 x     8               162240     100.0%      0.0%      0.0%
+ flops    13 x     8 x     8               173056     100.0%      0.0%      0.0%
+ flops    13 x     8 x     5               232960     100.0%      0.0%      0.0%
+ flops     5 x     8 x    13               232960     100.0%      0.0%      0.0%
+ flops    13 x     8 x    13              1211392     100.0%      0.0%      0.0%
  flops inhomo. stacks                           0       0.0%      0.0%      0.0%
- flops total                         1.227224E+06     100.0%      0.0%      0.0%
- flops max/rank                    282.392000E+03     100.0%      0.0%      0.0%
+ flops total                         2.341088E+06     100.0%      0.0%      0.0%
+ flops max/rank                    613.856000E+03     100.0%      0.0%      0.0%
  matmuls inhomo. stacks                         0       0.0%      0.0%      0.0%
- matmuls total                               1667     100.0%      0.0%      0.0%
- number of processed stacks                  1667     100.0%      0.0%      0.0%
+ matmuls total                               1442     100.0%      0.0%      0.0%
+ number of processed stacks                  1442     100.0%      0.0%      0.0%
  average stack size                                     1.0       0.0       0.0
- marketing flops                     1.316512E+06
+ marketing flops                     2.498690E+06
  -------------------------------------------------------------------------------
- # multiplications                            128
- max memory usage/rank             230.617088E+06
+ # multiplications                            108
+ max memory usage/rank             231.723008E+06
  # max total images/rank                        1
  # max 3D layers                                1
- # MPI messages exchanged                   75264
+ # MPI messages exchanged                   63504
  MPI messages size (bytes):
-  total size                         7.489152E+06
+  total size                         7.977216E+06
   min size                           0.000000E+00
   max size                           1.352000E+03
-  average size                      99.505104E+00
+  average size                     125.617538E+00
  MPI breakdown and total messages size (bytes):
-             size <=      128               63780                    72960
-       128 < size <=     8192               11484                  7416192
+             size <=      128               53100                        0
+       128 < size <=     8192               10404                  7977216
       8192 < size <=    32768                   0                        0
      32768 < size <=   131072                   0                        0
     131072 < size <=  4194304                   0                        0
@@ -863,7 +869,7 @@
   16777216 < size                               0                        0
  -------------------------------------------------------------------------------
  
- MEMORY| Estimated peak process memory [MiB]                                 221
+ MEMORY| Estimated peak process memory [MiB]                                 222
 
  -------------------------------------------------------------------------------
  ----                             MULTIGRID INFO                            ----
@@ -882,17 +888,17 @@
 
  ROUTINE             CALLS      AVE VOLUME [Bytes]
  MP_Group               18
- MP_Bcast              135                3803198.
- MP_Allreduce          510                   1623.
+ MP_Bcast              135                3803152.
+ MP_Allreduce          452                   1831.
  MP_Sync                 7
- MP_Alltoall           716                1261889.
- MP_ISendRecv         1248                  47232.
- MP_Wait             12054
+ MP_Alltoall           641                1185596.
+ MP_ISendRecv         1056                  47232.
+ MP_Wait             10186
  MP_comm_split           3
- MP_ISend             5063                  41239.
- MP_IRecv             5063                  41168.
- MP_Recv                 3                    496.
- MP_Memory            4988
+ MP_ISend             4283                  41683.
+ MP_IRecv             4283                  41585.
+ MP_Recv                 3                    992.
+ MP_Memory            4196
  -------------------------------------------------------------------------------
 
 
@@ -1002,70 +1008,74 @@
  -------------------------------------------------------------------------------
  SUBROUTINE                       CALLS  ASD         SELF TIME        TOTAL TIME
                                 MAXIMUM       AVERAGE  MAXIMUM  AVERAGE  MAXIMUM
- CP2K                                 1  1.0    0.075    0.097    4.051    4.055
- qs_energies                          1  2.0    0.018    0.048    3.399    3.406
- scf_env_do_scf                       1  3.0    0.000    0.002    2.914    2.915
- scf_env_do_scf_inner_loop            6  4.0    0.002    0.002    2.471    2.472
- qs_ks_update_qs_env                  7  5.0    0.001    0.003    2.089    2.092
- rebuild_ks_matrix                    6  6.0    0.000    0.000    2.087    2.090
- qs_ks_build_kohn_sham_matrix         6  7.0    0.006    0.013    2.087    2.090
- pw_transfer                        120  9.5    0.008    0.010    1.904    1.980
- fft_wrap_pw1pw2                    108 10.6    0.001    0.001    1.881    1.958
- fft_wrap_pw1pw2_250                 69 11.7    0.108    0.121    1.802    1.880
- fft3d_ps                           108 12.6    0.790    0.876    1.544    1.631
- qs_vxc_create                        6  8.0    0.002    0.008    1.369    1.383
- xc_vxc_pw_create                     6  9.0    0.017    0.023    1.368    1.382
- qs_rho_update_rho                    7  5.0    0.000    0.000    0.753    0.754
- calculate_rho_elec                   7  6.0    0.012    0.035    0.753    0.754
- mp_alltoall_z22v                   108 14.6    0.581    0.710    0.581    0.710
- density_rs2pw                        7  7.0    0.001    0.001    0.688    0.703
- xc_rho_set_and_dset_create           6 10.0    0.008    0.011    0.612    0.702
- rs_pw_transfer                      53  9.3    0.000    0.001    0.578    0.587
- yz_to_x                             46 13.1    0.060    0.069    0.389    0.492
- sum_up_and_integrate                 6  8.0    0.010    0.016    0.481    0.485
- integrate_v_rspace                   6  9.0    0.006    0.022    0.471    0.474
- potential_pw2rs                      6 10.0    0.001    0.001    0.448    0.451
- init_scf_loop                        1  4.0    0.001    0.004    0.441    0.444
- x_to_yz                             49 14.1    0.096    0.117    0.347    0.370
- qs_init_subsys                       1  2.0    0.009    0.016    0.344    0.351
- init_scf_run                         1  3.0    0.003    0.008    0.249    0.251
- scf_env_initial_rho_setup            1  4.0    0.001    0.006    0.245    0.248
- rs_pw_transfer_RS2PW_250             8  8.8    0.144    0.155    0.220    0.229
- qs_energies_init_hamiltonians        1  3.0    0.005    0.015    0.196    0.200
- mp_waitany                        1483 11.3    0.149    0.178    0.149    0.178
- xc_functional_eval                   6 11.0    0.000    0.000    0.081    0.174
- pbe_lda_eval                         6 12.0    0.081    0.173    0.081    0.173
- rs_pw_transfer_PW2RS_250             6 12.0    0.102    0.116    0.156    0.170
- qs_env_setup                         1  3.0    0.006    0.010    0.166    0.169
- dbcsr_multiply_generic             128  9.9    0.014    0.021    0.142    0.151
- qs_env_rebuild_pw_env                2  3.5    0.000    0.003    0.145    0.147
- pw_env_rebuild                       1  5.0    0.012    0.017    0.145    0.146
- init_qs_kind_set                     1  3.0    0.000    0.000    0.131    0.136
- init_qs_kind                         4  4.0    0.000    0.001    0.131    0.136
- init_orb_basis_set                   4  5.0    0.000    0.001    0.130    0.136
- init_cphi_and_sphi                   4  6.0    0.130    0.136    0.130    0.136
- pw_scatter_p                        55 13.2    0.111    0.127    0.111    0.127
- calculate_first_density_matrix       1  5.0    0.001    0.005    0.120    0.122
- pw_gather_p                         53 12.0    0.113    0.120    0.113    0.120
- qs_scf_new_mos                       6  5.0    0.000    0.000    0.115    0.117
- qs_scf_loop_do_ot                    6  6.0    0.000    0.001    0.115    0.117
- ot_scf_mini                          6  7.0    0.001    0.003    0.111    0.112
- qs_env_update_s_mstruct              1  4.0    0.000    0.005    0.103    0.106
- make_basis_sm                        1  6.0    0.001    0.002    0.100    0.101
- create_qs_kind_set                   1  2.0    0.003    0.014    0.082    0.094
- read_qs_kind                         4  3.0    0.037    0.044    0.078    0.090
- cp_dbcsr_sm_fm_multiply              3  7.7    0.002    0.010    0.088    0.089
- pw_grid_setup                        4  6.0    0.003    0.006    0.084    0.087
- ot_mini                              6  8.0    0.002    0.004    0.085    0.087
- calculate_rho_core                   1  5.0    0.004    0.009    0.080    0.083
- pw_grid_setup_internal               4  7.0    0.003    0.005    0.081    0.083
+ CP2K                                 1  1.0    0.069    0.088    3.651    3.655
+ qs_energies                          1  2.0    0.019    0.040    2.976    2.983
+ scf_env_do_scf                       1  3.0    0.001    0.006    2.487    2.488
+ scf_env_do_scf_inner_loop            5  4.0    0.001    0.006    2.005    2.009
+ qs_ks_update_qs_env                  6  5.0    0.001    0.004    1.719    1.724
+ rebuild_ks_matrix                    5  6.0    0.000    0.000    1.715    1.718
+ qs_ks_build_kohn_sham_matrix         5  7.0    0.010    0.018    1.715    1.718
+ pw_transfer                        101  9.5    0.006    0.008    1.605    1.660
+ fft_wrap_pw1pw2                     91 10.6    0.001    0.001    1.586    1.642
+ fft_wrap_pw1pw2_250                 58 11.7    0.092    0.108    1.510    1.564
+ fft3d_ps                            91 12.6    0.665    0.726    1.300    1.368
+ qs_vxc_create                        5  8.0    0.001    0.006    1.109    1.120
+ xc_vxc_pw_create                     5  9.0    0.015    0.021    1.109    1.120
+ qs_rho_update_rho                    6  5.0    0.000    0.000    0.673    0.674
+ calculate_rho_elec                   6  6.0    0.010    0.028    0.673    0.674
+ density_rs2pw                        6  7.0    0.000    0.001    0.611    0.627
+ mp_alltoall_z22v                    91 14.6    0.487    0.589    0.487    0.589
+ xc_rho_set_and_dset_create           5 10.0    0.006    0.007    0.484    0.551
+ rs_pw_transfer                      45  9.3    0.000    0.001    0.499    0.506
+ init_scf_loop                        1  4.0    0.001    0.007    0.479    0.484
+ yz_to_x                             39 13.1    0.052    0.060    0.330    0.406
+ sum_up_and_integrate                 5  8.0    0.009    0.014    0.399    0.402
+ integrate_v_rspace                   5  9.0    0.003    0.014    0.390    0.393
+ potential_pw2rs                      5 10.0    0.001    0.001    0.374    0.376
+ qs_init_subsys                       1  2.0    0.014    0.029    0.367    0.373
+ x_to_yz                             41 14.1    0.081    0.096    0.287    0.301
+ init_scf_run                         1  3.0    0.001    0.007    0.258    0.260
+ scf_env_initial_rho_setup            1  4.0    0.002    0.005    0.256    0.259
+ rs_pw_transfer_RS2PW_250             7  8.7    0.128    0.140    0.193    0.206
+ qs_energies_init_hamiltonians        1  3.0    0.004    0.017    0.191    0.196
+ qs_env_setup                         1  3.0    0.008    0.022    0.173    0.182
+ qs_env_rebuild_pw_env                2  3.5    0.003    0.008    0.155    0.163
+ pw_env_rebuild                       1  5.0    0.009    0.015    0.151    0.159
+ mp_waitany                        1263 11.2    0.124    0.158    0.124    0.158
+ dbcsr_multiply_generic             108  9.9    0.011    0.020    0.141    0.149
+ init_qs_kind_set                     1  3.0    0.000    0.000    0.139    0.141
+ init_qs_kind                         4  4.0    0.000    0.000    0.139    0.141
+ init_orb_basis_set                   4  5.0    0.000    0.000    0.139    0.141
+ init_cphi_and_sphi                   4  6.0    0.138    0.141    0.138    0.141
+ rs_pw_transfer_PW2RS_250             5 12.0    0.085    0.096    0.130    0.140
+ create_qs_kind_set                   1  2.0    0.002    0.012    0.115    0.127
+ calculate_first_density_matrix       1  5.0    0.001    0.005    0.124    0.127
+ read_qs_kind                         4  3.0    0.035    0.042    0.113    0.125
+ xc_functional_eval                   5 11.0    0.000    0.000    0.055    0.124
+ pbe_lda_eval                         5 12.0    0.055    0.124    0.055    0.124
+ qs_scf_new_mos                       5  5.0    0.000    0.000    0.105    0.108
+ qs_scf_loop_do_ot                    5  6.0    0.000    0.001    0.105    0.108
+ qs_env_update_s_mstruct              1  4.0    0.001    0.004    0.102    0.104
+ pw_scatter_p                        46 13.2    0.093    0.104    0.093    0.104
+ ot_scf_mini                          5  7.0    0.001    0.004    0.100    0.103
+ pw_gather_p                         45 12.0    0.097    0.103    0.097    0.103
+ pw_grid_setup                        4  6.0    0.004    0.006    0.089    0.091
+ pw_grid_setup_internal               4  7.0    0.002    0.005    0.086    0.088
+ parser_read_line                  6436  4.0    0.002    0.002    0.078    0.084
+ make_basis_sm                        1  6.0    0.002    0.003    0.081    0.083
+ parser_read_line_low                10  5.0    0.007    0.055    0.076    0.082
+ calculate_rho_core                   1  5.0    0.003    0.007    0.079    0.082
+ ot_mini                              5  8.0    0.003    0.006    0.077    0.080
+ prepare_preconditioner               1  5.0    0.000    0.003    0.078    0.080
+ topology_control                     1  2.0    0.005    0.016    0.051    0.077
+ broadcast_input_information         10  6.0    0.000    0.000    0.069    0.076
  -------------------------------------------------------------------------------
 
  The number of warnings for this run is : 0
  
  -------------------------------------------------------------------------------
-  **** **** ******  **  PROGRAM ENDED AT                 2018-10-17 16:47:39.000
+  **** **** ******  **  PROGRAM ENDED AT                 2018-10-17 18:24:38.515
  ***** ** ***  *** **   PROGRAM RAN ON                                      g013
  **    ****   ******    PROGRAM RAN BY                                     macer
- ***** **    ** ** **   PROGRAM PROCESS ID                                  1673
-  **** **  *******  **  PROGRAM STOPPED IN         /home/macer/8_BSSE_test/6_Aab
+ ***** **    ** ** **   PROGRAM PROCESS ID                                 23688
+  **** **  *******  **  PROGRAM STOPPED IN         /home/macer/8_BSSE_test/7_Bab

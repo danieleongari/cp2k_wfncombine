@@ -150,7 +150,7 @@ print(' . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 
 
 data = scipy.io.FortranFile('Aab_wavefunction.wfn', 'w')
 
-data.write_record(np.array([natom1, nspin1, nao1 + nao2, max(nset_max1, nset_max2), max(nshell_max1, nshell_max2)], dtype=np.int32))
+data.write_record(np.array([natom1 + natom2, nspin1, nao1 + nao2, max(nset_max1, nset_max2), max(nshell_max1, nshell_max2)], dtype=np.int32))
 
 data.write_record(np.array(np.concatenate([nset_info1, nset_info2]), dtype=np.int32))
 data.write_record(np.array(np.concatenate([nshell_info1, nshell_info2]), dtype=np.int32))
@@ -198,6 +198,55 @@ for ispin in range(nspin1):
             zeroes.append(0.0)
         data.write_record(np.array(zeroes, dtype=np.dtype('f8')))
 
+###############################################################################################33
+data = scipy.io.FortranFile('Bab_wavefunction.wfn', 'w')
+
+data.write_record(np.array([natom1 + natom2, nspin2, nao1 + nao2, max(nset_max1, nset_max2), max(nshell_max1, nshell_max2)], dtype=np.int32))
+
+data.write_record(np.array(np.concatenate([nset_info1, nset_info2]), dtype=np.int32))
+data.write_record(np.array(np.concatenate([nshell_info1, nshell_info2]), dtype=np.int32))
+maxSetSize1 = nshell_info1.max()
+maxSetSize2 = nshell_info2.max()
+if maxSetSize2 > maxSetSize1:
+    setSizeDifference = maxSetSize2 - maxSetSize1
+    for i in  range(natom1):
+        for j in range(setSizeDifference):
+            nso_info1 = np.insert(maxSetSize2 + i*maxSetSize1, nso_info2, 0)
+if maxSetSize1 > maxSetSize2:
+    setSizeDifference = maxSetSize1 - maxSetSize2
+    for i in  range(natom2):
+        for j in range(setSizeDifference):
+            nso_info2 = np.insert(maxSetSize1 + i*maxSetSize2, nso_info1, 0)
+data.write_record(np.array(np.concatenate([nso_info1, nso_info2]), dtype=np.int32))
+
+for ispin in range(nspin2):
+    data.write_record(np.array([spins2[ispin][0][0],
+                                spins2[ispin][0][1],
+                                spins2[ispin][0][1] + 1,
+                                spins2[ispin][0][3]], dtype=np.int32))
+
+    evoccs = []
+    for i in range(int(spins2[ispin][0][0])):
+        evoccs.append(0.0)
+    appendValue = 2.0
+    if nspin2 == 2:
+        appendValue = 1.0
+    for i in range(int(spins2[ispin][0][0])):
+        evoccs.append(appendValue)
+    data.write_record(np.array(evoccs, dtype=np.dtype('f8')))
+
+    nmo1 = len(spins1[ispin][2])
+    nmo2 = len(spins2[ispin][2])
+
+    for imo in range(nmo2):
+        zeroes = []
+        for i in range(nao1):
+            zeroes.append(0.0)
+        mo = np.concatenate([np.array(zeroes, dtype=np.dtype('f8')), spins2[ispin][2][imo]])
+        data.write_record(np.array(mo, dtype=np.dtype('f8')))
+
+
+
 print('. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .')
 print(' . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . ')
 print('. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .')
@@ -205,6 +254,45 @@ print(' . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 
 print('. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .')
 
 data = scipy.io.FortranFile('Aab_wavefunction.wfn', 'r')
+
+natom, nspin, nao, nset_max, nshell_max = data.read_ints()
+
+print('Number of atoms: {}'.format(natom))
+print('Number of spins: {}'.format(nspin))
+print('Number of atomic orbitals: {}'.format(nao))
+print('Maximum number of sets in the basis set: {}'.format(nset_max))
+print('Number of maximum number of shells in each set: {}'.format(nshell_max))
+
+print('. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .')
+
+nset_info = data.read_ints()
+print('Number of sets in the basis set for each atom {}'.format(nset_info))
+
+nshell_info = data.read_ints()
+print('Number of shells in each of the sets {}'.format(nshell_info))
+
+nso_info = data.read_ints()
+print('Number of orbitals in each shell {}'.format(nso_info))
+
+for ispin in range(nspin):
+    print('. . . FOR SPIN {}: . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .'.format(ispin))
+
+    nmo, homo, lfomo, nelectron = data.read_ints()
+    print('Number of molecular orbitals: {}'.format(nmo))
+    print('Index of the HOMO: {}'.format(homo))
+    print('Index of the LUMO: {}'.format(lfomo))
+    print('Number of electrons: {}'.format(nelectron))
+
+
+    evals_occs = data.read_reals()
+    print('Eigenvalues and occupancies of the molecular orbitals: {}'.format(evals_occs))
+
+    for imo in range(nmo):
+        coefs = data.read_reals()
+        print('Coefficients for molecular orbital {}:'.format(imo + 1))
+        print(coefs)
+
+data = scipy.io.FortranFile('Bab_wavefunction.wfn', 'r')
 
 natom, nspin, nao, nset_max, nshell_max = data.read_ints()
 
